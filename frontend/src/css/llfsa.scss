@@ -1,0 +1,136 @@
+
+//
+// Mixins, basically css templates
+//
+
+// Red thin border to show an elements exact size
+@mixin debug-border {
+  border-style: solid;
+  border-width: 2px;
+  border-color: red;
+}
+
+// Nulls all marins, padding, and borders, mainly to remove default values
+@mixin null-all-outline {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// Rounds element corners, default values changeable after including
+@mixin rounded {
+  border-width: 5px;              // Border width, default 5px
+  border-radius: 15px;            // How round the corners are, default 12px but larger recommended for larger items
+  border-style: solid;            // Makes the border visible
+  background-color: #b7edff;  // Colors the element background
+  border-color: #b7edff;      // Colors the border to match
+}
+
+// Default look for buttons
+@mixin button {
+  @include rounded; // Round corners
+  padding: 2px;     // Pad to give button text space
+  min-width: 60px;  // Set min width to ensure clickability
+  font-size: 1em;   // Increase text size
+  cursor: pointer;  // Set cursor to pointer to show clickability
+
+  background-color: #75ddff;    // Colors the element background
+  border-color: #75ddff;        // Colors the border to match
+
+  &:hover {         // Change button color when pointer is on it to show clickability
+    background-color: #2ccaff;  // Change element background color
+    border-color: #2ccaff;      // Change border color to match
+  }
+
+  &:active {        // Change button color when clicked to show it being clicked
+    background-color: #2fb0db;  // Change element background color
+      border-color: #2fb0db;    // Change border color to match
+  }
+}
+
+//
+// Base page layout defining, ex. making sure that the app fills the whole window
+//
+
+* {
+  @include null-all-outline;  // Null all default margins, padding, and borders
+  box-sizing: border-box;     // All outlines are counted when defining dimensions
+  text-decoration: none;      // Null all default text decorations, ex. link underlines
+  color: black;             // Null all default text color, ex. link purple
+  font-family: monospace;     // Set page font
+}
+
+html, body {
+  min-width: 500px;           // Minimum width for page is 500px
+}
+
+.full-window {
+  min-height: 100vh;          // Makes element at least as tall as the window
+}
+
+//
+// Flex classes for quicker flex property editing
+//
+
+.flex {
+  display: flex;
+}
+
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.flex.horizontal-center {
+  align-items: center;
+}
+
+.flex.column {
+  flex-direction: column;
+}
+
+//
+// Generic classes and defenitions for mixed use
+//
+
+button {
+  @include button;
+}
+
+header {
+  @include rounded;           // Rounds corners
+  border-radius: 50px;        // Makes round corners deeper
+  padding: 0px 20px 0px 20px; // Streches element vertically
+  margin: 10px;               // Margin
+  min-width: 490px;           // Minimum width so the header doesn't scrunch up, but keeps margin
+  height: 70px;               // Set height of header
+  align-items: center;        // Align header items vertically
+
+  h1 {
+    font-style: italic;
+    font-stretch: extra-expanded;
+  }
+
+  h4 {
+    @include button;          // Make link to admin look like button
+  }
+}
+
+
+
+
+//
+// User view specifics
+//
+
+.user-view {
+
+  .word {
+    @include rounded;
+
+    margin: 3px;
+    padding: 3px;
+
+    min-width: 400px;
+    max-width: 500px;
+  }
+}

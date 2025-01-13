@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+  font-family: monospace;
+}
+
+html, body {
+  min-width: 500px;
+}
+
+.full-window {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.flex.horizontal-center {
+  align-items: center;
+}
+
+.flex.column {
+  flex-direction: column;
+}
+
+button {
+  border-width: 5px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  padding: 2px;
+  min-width: 60px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #75ddff;
+  border-color: #75ddff;
+}
+button:hover {
+  background-color: #2ccaff;
+  border-color: #2ccaff;
+}
+button:active {
+  background-color: #2fb0db;
+  border-color: #2fb0db;
+}
+
+header {
+  border-width: 5px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  border-radius: 50px;
+  padding: 0px 20px 0px 20px;
+  margin: 10px;
+  min-width: 490px;
+  height: 70px;
+  align-items: center;
+}
+header h1 {
+  font-style: italic;
+  font-stretch: extra-expanded;
+}
+header h4 {
+  border-width: 5px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  padding: 2px;
+  min-width: 60px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #75ddff;
+  border-color: #75ddff;
+}
+header h4:hover {
+  background-color: #2ccaff;
+  border-color: #2ccaff;
+}
+header h4:active {
+  background-color: #2fb0db;
+  border-color: #2fb0db;
+}
+
+.user-view .word {
+  border-width: 5px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  margin: 3px;
+  padding: 3px;
+  min-width: 400px;
+  max-width: 500px;
+}/*# sourceMappingURL=llfsa.css.map */
