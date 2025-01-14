@@ -1,16 +1,16 @@
 # language-learning-fullstack-app aka LLFSA
-App for creating and answering language learning tests
 
-### Features in development
+App for learning words in different languages
+
+### Features
 
 - The backend
+
   - [ ] Database architecture
   - [ ] SQL to database handler
   - [ ] Express router
   - [ ] Backend start script
 
-### Features next in line
-
 - The frontend
-  - Teacher UI
-  - Student UI
+  - [ ] Learning view
+  - [ ] Admin view
