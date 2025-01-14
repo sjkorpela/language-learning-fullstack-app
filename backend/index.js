@@ -22,7 +22,7 @@ async function main() {
   const app = express();
 
   // Apply middleware to router
-  app.use(cors());         // CORS
+  // app.use(cors());         // CORS
   app.use(express.json()); // json parsing
   app.use(router);         // URL routing
 
