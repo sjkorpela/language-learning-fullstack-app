@@ -58,4 +58,5 @@ INSERT INTO words(fooWord, fooLang, barWord, barLang, tags) VALUES
   ("()", "uni", "kaarisulkeet", "fin", "3"),
   ("[]", "uni", "hakasulkeet", "fin", "3"),
   ("{}", "uni", "aaltosulkeet", "fin", "3"),
-  ("〈〉", "uni", "kulmasulkeet", "fin", "3");
+  ("〈〉", "uni", "kulmasulkeet", "fin", "3"),
+  ("foofoofoofoofoofoofoofoofoofoo", "eng", "barbarbarbarbarbarbarbarbarbar", "fin", "3");
