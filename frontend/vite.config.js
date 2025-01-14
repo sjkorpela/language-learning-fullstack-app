@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "http://localhost:3000", // Adjust the port to your backend's port
+      "/api": "http://localhost:5678", // Adjust the port to your backend's port
     },
   },
   resolve: {
