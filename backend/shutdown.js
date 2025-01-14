@@ -2,9 +2,8 @@
 /**
  * Function to set up graceful shutdown. Defines shutdown function and when it's called.
  * @param {Object} server Express router listening to port
- * @param {Object} pool   Pool of sql connections
  */
-const setupGracefulShutdown = (server, pool) => {
+const setupGracefulShutdown = (server) => {
   /**
    * Function to be called on shutdown. Closes SQL connection and express server, and prints result.
    */
@@ -12,25 +11,16 @@ const setupGracefulShutdown = (server, pool) => {
 
     console.info("\n💀 Shutting down gracefully");
 
-    // Closing the SQL connection, and printing result
-    pool.end((err) => {
+    // Closing the server, and printing result
+    server.close((err) => {
       if (err) {
-        console.error("💀⚠️ Error closing MySQL connection:", err.stack);
+        console.error("💀⚠️ Error closing express server:", err.stack);
       } else {
-        console.info("💀 MySQL connection closed");
+        console.info("💀 Express server closed");
       }
 
-      // Closing the server, and printing result
-      server.close((err) => {
-        if (err) {
-          console.error("💀⚠️ Error closing express server:", err.stack);
-        } else {
-          console.info("💀 Express server closed");
-        }
-
-        // Exiting process
-        process.exit(0);
-      });
+      // Exiting process
+      process.exit(0);
     });
   };
 
