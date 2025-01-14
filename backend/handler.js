@@ -1,6 +1,6 @@
 
 // Self-made dependencies
-const pool = require("./pool.js");
+const database = require("./database.js");
 const schema = require("./validation.js");
 
 const handlerFunctions = {
@@ -18,10 +18,10 @@ const handlerFunctions = {
       }
 
       // Build the SQL query
-      query = `SELECT * FROM ${table}`;
+      const query = `SELECT * FROM ${table}`;
 
       // Send the query, and reject/resolve
-      pool.query(query, function (error, data) {
+      database.all(query, [], function (error, data) {
         if (error) {
           console.log(`🤠 GET ALL failed, rejecting, error:\n`, error);
           reject(error);
@@ -29,7 +29,18 @@ const handlerFunctions = {
           console.log(`🤠 GET ALL succeeded, resolving`);
           resolve(data);
         }
-      });
+      })
+
+      // Send the query, and reject/resolve
+      // pool.query(query, function (error, data) {
+      //   if (error) {
+      //     console.log(`🤠 GET ALL failed, rejecting, error:\n`, error);
+      //     reject(error);
+      //   } else {
+      //     console.log(`🤠 GET ALL succeeded, resolving`);
+      //     resolve(data);
+      //   }
+      // });
 
       console.log(`🤠 GET ALL end`);
     })
@@ -52,16 +63,16 @@ const handlerFunctions = {
       // Build the SQL query
       query = `SELECT * FROM ${table} WHERE id = ${id}`;
 
-      // Send the query, and reject/resolve
-      pool.query(query, function (error, data) {
-        if (error) {
-          console.log(`🤠 GET ROW failed, rejecting\n`, error);
-          reject(error);
-        } else {
-          console.log(`🤠 GET ROW succeeded, resolving`);
-          resolve(data);
-        }
-      });
+      // // Send the query, and reject/resolve
+      // pool.query(query, function (error, data) {
+      //   if (error) {
+      //     console.log(`🤠 GET ROW failed, rejecting\n`, error);
+      //     reject(error);
+      //   } else {
+      //     console.log(`🤠 GET ROW succeeded, resolving`);
+      //     resolve(data);
+      //   }
+      // });
 
       console.log(`🤠 GET ROW end`);
     })
@@ -92,15 +103,15 @@ const old = {
       query = "SELECT * FROM tests";
 
       // Query the query, and reject/resolve
-      pool.query(query, function (error, data) {
-        if (error) {
-          console.log(`🤠 GET ALL TESTS failed, rejecting\n`, error);
-          reject(error);
-        } else {
-          console.log(`🤠 GET ALL TESTS succeeded, resolving`);
-          resolve(data);
-        }
-      });
+      // pool.query(query, function (error, data) {
+      //   if (error) {
+      //     console.log(`🤠 GET ALL TESTS failed, rejecting\n`, error);
+      //     reject(error);
+      //   } else {
+      //     console.log(`🤠 GET ALL TESTS succeeded, resolving`);
+      //     resolve(data);
+      //   }
+      // });
 
       console.log(`🤠 GET ALL TESTS end`);
     })
@@ -118,15 +129,15 @@ const old = {
       query = "SELECT * FROM tests WHERE id = ?";
 
       // Query the query, and reject/resolve
-      pool.query(query, [id], function (error, data) {
-        if (error) {
-          console.log(`🤠 GET TEST ${id}, rejecting\n`, error);
-          reject(error);
-        } else {
-          console.log(`🤠 GET TEST ${id} succeeded, resolving`);
-          resolve(data);
-        }
-      });
+      // pool.query(query, [id], function (error, data) {
+      //   if (error) {
+      //     console.log(`🤠 GET TEST ${id}, rejecting\n`, error);
+      //     reject(error);
+      //   } else {
+      //     console.log(`🤠 GET TEST ${id} succeeded, resolving`);
+      //     resolve(data);
+      //   }
+      // });
 
       console.log(`🤠 GET TEST ${id}}`);
     })
@@ -164,15 +175,15 @@ const old = {
       query = "SELECT * FROM words";
 
       // Query the query, and reject/resolve
-      pool.query(query, function (error, data) {
-        if (error) {
-          console.log(`🤠 GET ALL WORDS failed, rejecting\n`, error);
-          reject(error);
-        } else {
-          console.log(`🤠 GET ALL WORDS succeeded, resolving`);
-          resolve(data);
-        }
-      });
+      // pool.query(query, function (error, data) {
+      //   if (error) {
+      //     console.log(`🤠 GET ALL WORDS failed, rejecting\n`, error);
+      //     reject(error);
+      //   } else {
+      //     console.log(`🤠 GET ALL WORDS succeeded, resolving`);
+      //     resolve(data);
+      //   }
+      // });
 
       console.log(`🤠 GET ALL WORDS end`);
     })
@@ -187,15 +198,15 @@ const old = {
       query = "INSERT INTO words(word1, word2) VALUES (?, ?)";
 
       // Query the query, and reject/resolve
-      pool.query(query, [word1, word2], function (error, data) {
-        if (error) {
-          console.log(`🤠 POST WORD failed, rejecting\n`, error);
-          reject(error);
-        } else {
-          console.log(`🤠 POST WORD succeeded, resolving`);
-          resolve(data);
-        }
-      });
+      // pool.query(query, [word1, word2], function (error, data) {
+      //   if (error) {
+      //     console.log(`🤠 POST WORD failed, rejecting\n`, error);
+      //     reject(error);
+      //   } else {
+      //     console.log(`🤠 POST WORD succeeded, resolving`);
+      //     resolve(data);
+      //   }
+      // });
 
       console.log(`🤠 POST WORD end`);
     })
