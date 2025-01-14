@@ -2,10 +2,22 @@
 // Import react router dependencies to link to other subpages
 import { Link } from "react-router-dom";
 
+import { useState, useEffect } from "react";
+
 // Import word list item element
 import Word from "./UserView/Word"
 
-export default function UserView() {
+export default function UserView({ wordList }) {
+
+  const [words, setWords] = useState([]);
+
+  useEffect(() => {
+    console.log("UserView UE", words);
+
+    if (words.length <= 0 && wordList != undefined) {
+      setWords(wordList);
+    }
+  })
 
   return (
     <div className="full-window user-view flex horizontal-center column">
@@ -17,10 +29,16 @@ export default function UserView() {
       </header>
 
 
-      <div>
-        <Word />
-        <Word />
-        <Word />
+      <div className="word-list">
+        {
+          words.map((word) => {
+            return (
+              <div key={word.id}>
+                <Word word={word} />
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   )

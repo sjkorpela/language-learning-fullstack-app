@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Import react router dependencies to render subpages, and to default to learn view
 import { Outlet, Navigate } from "react-router-dom";
 
+import { useState, useEffect } from "react";
+
 // Import admin, and user view for subpages
 import AdminView from "./AdminView";
 import UserView from "./UserView";
@@ -18,6 +20,26 @@ import UserView from "./UserView";
  * @returns RouterProvider element, which contains outlet for subpages to render in
  */
 export default function App() {
+
+  const [wordList, setWordList] = useState();
+  const [tagList, setTagList] = useState();
+
+  useEffect(() => {
+    console.log("App UE", "Fetching words and tags");
+    fetchAll();
+  }, [])
+
+  async function fetchAll() {
+    const rawWords = await fetch("/api/words");
+    const words = await rawWords.json();
+    setWordList(words);
+    const rawTags = await fetch("/api/tags");
+    const tags = await rawTags.json();
+    setTagList(tags);
+
+    console.log(words);
+    console.log(tags);
+  }
 
   // Create router structure
   const router = createBrowserRouter([
@@ -35,7 +57,7 @@ export default function App() {
         // Learn view aka user view, to learn words, default view of the app
         {
           path: "/learn",
-          element: <UserView />
+          element: <UserView tagList={tagList}  wordList={wordList}/>
         },
         // Admin view, to manage words
         {

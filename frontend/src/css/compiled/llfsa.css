@@ -9,7 +9,7 @@
 }
 
 html, body {
-  min-width: 500px;
+  min-width: 600px;
 }
 
 .full-window {
@@ -32,12 +32,13 @@ html, body {
   flex-direction: column;
 }
 
-button {
+button, input[type=submit] {
   border-width: 5px;
   border-radius: 15px;
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
+  min-height: 30px;
   padding: 2px;
   min-width: 60px;
   font-size: 1em;
@@ -45,13 +46,25 @@ button {
   background-color: #75ddff;
   border-color: #75ddff;
 }
-button:hover {
+button:hover, input[type=submit]:hover {
   background-color: #2ccaff;
   border-color: #2ccaff;
 }
-button:active {
+button:active, input[type=submit]:active {
   background-color: #2fb0db;
   border-color: #2fb0db;
+}
+
+input[type=text] {
+  border-width: 5px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  min-height: 30px;
+  background-color: white;
+  border-color: white;
+  padding: 0px 5px 0px 5px;
 }
 
 header {
@@ -60,6 +73,7 @@ header {
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
+  min-height: 30px;
   border-radius: 50px;
   padding: 0px 20px 0px 20px;
   margin: 10px;
@@ -77,6 +91,7 @@ header h4 {
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
+  min-height: 30px;
   padding: 2px;
   min-width: 60px;
   font-size: 1em;
@@ -93,14 +108,30 @@ header h4:active {
   border-color: #2fb0db;
 }
 
-.user-view .word {
+.flip-button::after {
+  content: "sync_alt";
+  font-family: "Material Icons";
+  font-size: small;
+}
+
+.user-view .word-box {
   border-width: 5px;
   border-radius: 15px;
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
+  min-height: 30px;
   margin: 3px;
   padding: 3px;
-  min-width: 400px;
-  max-width: 500px;
+  min-width: 600px;
+  max-width: 600px;
+}
+.user-view .word-box .word {
+  flex: 1;
+}
+.user-view .word-box .word.foo {
+  text-align: left;
+}
+.user-view .word-box .word.bar {
+  text-align: right;
 }/*# sourceMappingURL=llfsa.css.map */

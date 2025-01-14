@@ -24,6 +24,7 @@
   border-style: solid;            // Makes the border visible
   background-color: #b7edff;  // Colors the element background
   border-color: #b7edff;      // Colors the border to match
+  min-height: 30px;
 }
 
 // Default look for buttons
@@ -61,7 +62,7 @@
 }
 
 html, body {
-  min-width: 500px;           // Minimum width for page is 500px
+  min-width: 600px;           // Minimum width for page is 600px
 }
 
 .full-window {
@@ -92,8 +93,16 @@ html, body {
 // Generic classes and defenitions for mixed use
 //
 
-button {
+button, input[type=submit] {
   @include button;
+}
+
+input[type=text] {
+  @include rounded;
+  background-color: white;
+  border-color: white;
+
+  padding: 0px 5px 0px 5px; // Stretches element vertically slightly so cursor is always visible
 }
 
 header {
@@ -115,6 +124,12 @@ header {
   }
 }
 
+.flip-button::after {
+  content: "sync_alt";
+  font-family: "Material Icons";
+  font-size: small;
+}
+
 
 
 
@@ -124,13 +139,28 @@ header {
 
 .user-view {
 
-  .word {
+  .word-box {
     @include rounded;
 
     margin: 3px;
     padding: 3px;
 
-    min-width: 400px;
-    max-width: 500px;
+    min-width: 600px;
+    max-width: 600px;
+
+    .word {
+      // @include debug-border;
+      flex: 1;
+    }
+
+    .word.foo {
+      text-align: left;
+      // border-color: red;
+    }
+
+    .word.bar {
+      text-align: right;
+      // border-color: blue;
+    }
   }
 }
