@@ -1,15 +1,23 @@
 # GET the home route
 GET http://localhost:5678/
 
-### GET the tests route
-GET http://localhost:5678/tests/
+### GET the words route
+GET http://localhost:5678/api/words/
 
 ### GET the tests route invalid id
-GET http://localhost:5678/tests/moihei
+GET http://localhost:5678/api/words/moihei
 
-### GET the tests route id 0
-GET http://localhost:5678/tests/0
+### GET the tests route id 1
+GET http://localhost:5678/api/words/1
 
-### GET the tests route id 0 submissions
-GET http://localhost:5678/tests/0/submissions
+### POST a new word
+POST http://localhost:5678/api/words
+Content-Type: application/json
 
+{
+  "fooWord": "banana",
+  "fooLang": "eng",
+  "barWord": "banaani",
+  "barLang": "fin",
+  "tags": "2"
+}
