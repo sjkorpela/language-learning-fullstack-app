@@ -23,8 +23,8 @@ CREATE TABLE words(
 );
 
 -- Create the tags table:
--- - id       -> Id of the tag, as an integer 1 or greater
--- - fooWord  -> Name of the tag, string max 30 characters
+-- - id    -> Id of the tag, as an integer 1 or greater
+-- - name  -> Name of the tag, string max 30 characters
 CREATE TABLE tags(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) NOT NULL
