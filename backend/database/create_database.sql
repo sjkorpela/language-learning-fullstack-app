@@ -1,4 +1,5 @@
 -- This to be run when setting up a server. Creates the SQL database to be used by the server and fills it with some example data.
+-- mysql -u root -p < create_database.sql
 
 -- Create the database
 CREATE DATABASE llfsa;
@@ -34,7 +35,7 @@ CREATE TABLE tags(
 INSERT INTO tags(name) VALUES
   ("Animals"),
   ("Fruits"),
-  ("Computer science")
+  ("Computer science");
 
 -- Languages
 -- eng -> english
@@ -57,4 +58,4 @@ INSERT INTO words(fooWord, fooLang, barWord, barLang, tags) VALUES
   ("()", "uni", "kaarisulkeet", "fin", "3"),
   ("[]", "uni", "hakasulkeet", "fin", "3"),
   ("{}", "uni", "aaltosulkeet", "fin", "3"),
-  ("〈〉", "uni", "kulmasulkeet", "fin", "3")
+  ("〈〉", "uni", "kulmasulkeet", "fin", "3");
