@@ -29,6 +29,14 @@ async function main() {
   // Read port from .env
   const port = process.env.PORT || 5678;
 
+  // Serve static files from the 'public' directory
+  app.use(express.static(path.join(__dirname, "public")));
+
+  // Handle other routes by serving the frontend's index.html
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+  });
+
   // Start server on port
   const server = app.listen(port, () => {
     console.log(`🚀 LLFSA backend API listening on port ${port}`);
