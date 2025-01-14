@@ -37,7 +37,7 @@ async function main() {
   // Set router dist path
   app.use(express.static(path.join(__dirname, "dist")));
 
-  // Call graceful shutdown setup with server instance
+  // Call graceful shutdown setup with server and sql instance
   setUpGracefulShutdown(server, pool);
 }
 
@@ -48,7 +48,7 @@ console.info(
   + "🤠 is for handler logs\n"
   + "🌊 is for pool logs\n"
   + "💀 is for shutdown logs\n"
-  + "\nThis is for quicker readability when testing"
+  + "\nThis is for quicker readability when testing\n"
   );
 
 // Run main function to start everything
