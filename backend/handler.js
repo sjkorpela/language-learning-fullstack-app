@@ -50,7 +50,7 @@ const handlerFunctions = {
       }
 
       // Build the SQL query
-      query = `SELECT * FROM ${table} WHERE id == ${id}`;
+      query = `SELECT * FROM ${table} WHERE id = ${id}`;
 
       // Send the query, and reject/resolve
       pool.query(query, function (error, data) {
