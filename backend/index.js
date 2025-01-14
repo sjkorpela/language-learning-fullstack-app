@@ -7,7 +7,7 @@
 async function main() {
   // Module dependencies
   const express = require("express"); // express for routing
-  const cors = require("cors");       // cors for managing CORS
+  // const cors = require("cors");       // cors for managing CORS
   const path = require("path");       // path for setting express dist path
   require('dotenv').config()          // dotenv for accessing environment variables
 
@@ -27,7 +27,7 @@ async function main() {
   app.use(router);         // URL routing
 
   // Read port from .env
-  const port = process.env.DB_PORT;
+  const port = process.env.PORT || 5678;
 
   // Start server on port
   const server = app.listen(port, () => {
