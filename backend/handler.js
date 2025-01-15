@@ -31,17 +31,6 @@ const handlerFunctions = {
         }
       })
 
-      // Send the query, and reject/resolve
-      // pool.query(query, function (error, data) {
-      //   if (error) {
-      //     console.log(`🤠 GET ALL failed, rejecting, error:\n`, error);
-      //     reject(error);
-      //   } else {
-      //     console.log(`🤠 GET ALL succeeded, resolving`);
-      //     resolve(data);
-      //   }
-      // });
-
       console.log(`🤠 GET ALL end`);
     })
   },
@@ -63,16 +52,16 @@ const handlerFunctions = {
       // Build the SQL query
       query = `SELECT * FROM ${table} WHERE id = ${id}`;
 
-      // // Send the query, and reject/resolve
-      // pool.query(query, function (error, data) {
-      //   if (error) {
-      //     console.log(`🤠 GET ROW failed, rejecting\n`, error);
-      //     reject(error);
-      //   } else {
-      //     console.log(`🤠 GET ROW succeeded, resolving`);
-      //     resolve(data);
-      //   }
-      // });
+      // Send the query, and reject/resolve
+      database.all(query, [], function (error, data) {
+        if (error) {
+          console.log(`🤠 GET ROW failed, rejecting, error:\n`, error);
+          reject(error);
+        } else {
+          console.log(`🤠 GET ROW succeeded, resolving`);
+          resolve(data);
+        }
+      })
 
       console.log(`🤠 GET ROW end`);
     })
