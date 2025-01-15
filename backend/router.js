@@ -110,8 +110,10 @@ const router = express.Router();
           "tags": params.tags
         })
 
+        console.log("testi");
         const result = await handler.PostWord(params);
-        respond.status(201);
+        console.log("toimi");
+        respond.sendStatus(201);
       } catch (e) {
         console.log(e);
         // If validation error, bad request, else internal server error
@@ -160,7 +162,7 @@ const router = express.Router();
         })
 
         const result = await handler.PutWord(params);
-        respond.status(201);
+        respond.sendStatus(200);
       } catch (e) {
         console.log(e);
         // If validation error, bad request, else internal server error
