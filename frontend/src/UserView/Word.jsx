@@ -60,7 +60,7 @@ export default function Word({ word }) {
 
           <div className="bar word">
             <p>{word.barLang}</p>
-            <input type="text"></input>
+            <input type="text" placeholder="Your answer here"></input>
           </div>
         </div>
 

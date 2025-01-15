@@ -24,8 +24,12 @@ html, body {
   justify-content: space-between;
 }
 
-.flex.vertical-center {
+.flex.align-center {
   align-items: center;
+}
+
+.flex.justify-center {
+  justify-content: center;
 }
 
 .flex.column {
@@ -36,11 +40,10 @@ html, body {
   flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 900px) {
-  .flex.wrap {
-    flex-direction: column;
-  }
+.flex-grow {
+  flex-grow: 1;
 }
+
 input[type=text] {
   border-width: 3px;
   border-radius: 15px;
@@ -258,6 +261,7 @@ header h4:active {
   background-color: #b7edff;
   border-color: #b7edff;
   min-width: 300px;
+  max-width: 600px;
   height: fit-content;
 }
 .user-view .tag-section h2 {

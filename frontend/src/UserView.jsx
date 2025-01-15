@@ -156,7 +156,7 @@ export default function UserView({ wordList, tagList }) {
   }
 
   return (
-    <div className="full-window user-view flex vertical-center column">
+    <div className="full-window user-view flex align-center column">
 
       <header className="flex space-between">
         <h1>Word Learn</h1>
@@ -165,9 +165,9 @@ export default function UserView({ wordList, tagList }) {
         </Link>
       </header>
 
-      <div className="flex wrap">
+      <div className="flex wrap justify-center">
 
-        <section className="tag-section">
+        <section className="tag-section flex-grow">
           <h2><big>Tags</big> <small><i>Create and delete tags</i></small></h2>
           <form>
             <input type="text" id="title" name="title" placeholder="Add new tag" required></input>
