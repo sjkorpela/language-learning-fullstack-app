@@ -38,7 +38,8 @@ const database = new sqlite3.Database(":memory:", (error) => {
         "INSERT INTO tags(name) VALUES"
         + '("Animals"),'
         + '("Fruits"),'
-        + '("Computer science")'
+        + '("Computer science"),'
+        + '("Greeting")'
       )
 
       // Insert example words
