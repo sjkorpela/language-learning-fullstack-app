@@ -4,11 +4,17 @@ GET http://localhost:5678/
 ### GET the words route
 GET http://localhost:5678/api/words/
 
-### GET the tests route invalid id
+### GET the words route invalid id
 GET http://localhost:5678/api/words/moihei
 
-### GET the tests route id 1
+### GET the words route id 1
 GET http://localhost:5678/api/words/1
+
+### GET the tags route
+GET http://localhost:5678/api/tags
+
+### GET the tags route id 1
+GET http://localhost:5678/api/tags/1
 
 ### POST a new word
 POST http://localhost:5678/api/words
@@ -20,4 +26,57 @@ Content-Type: application/json
   "barWord": "banaani",
   "barLang": "fin",
   "tags": "2"
+}
+
+### POST a new tag
+POST http://localhost:5678/api/tags
+Content-Type: application/json
+
+{
+  "name": "Serious"
+}
+
+### DELETE a word id 1
+DELETE http://localhost:5678/api/words/1
+
+### DELETE a tag id 1
+DELETE http://localhost:5678/api/tags/1
+
+### PATCH a word with a new language, kissa -> katt
+PATCH http://localhost:5678/api/words/1
+Content-Type: application/json
+
+{
+  "barWord": "katt",
+  "barLang": "swe"
+}
+
+### Onko kiivi nisäkäs? Googlaa..
+### PATCH a tag with a new name, Animals -> Mammals
+PATCH http://localhost:5678/api/words/1
+Content-Type: application/json
+
+{
+  "name": "Mammals"
+}
+
+### PUT a new word at id 1, cat -> banana
+PUT http://localhost:5678/api/words/1
+Content-Type: application/json
+
+{
+  "fooWord": "banana",
+  "fooLang": "eng",
+  "barWord": "banaani",
+  "barLang": "fin",
+  "tags": "2"
+}
+
+### Sama vika kuin patchissa, onko kiivi nisäkäs? Kysy ChatGPT?
+### PUT a new tag at id 1, cat -> banana
+PUT http://localhost:5678/api/tag/1
+Content-Type: application/json
+
+{
+  "name": "Mammals"
 }
