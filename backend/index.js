@@ -7,15 +7,12 @@
 async function main() {
   // Module dependencies
   const express = require("express"); // express for routing
-  // const cors = require("cors");       // cors for managing CORS
   const path = require("path");       // path for setting express dist path
   require('dotenv').config()          // dotenv for accessing environment variables
 
   // Self-made dependencies
   const router = require("./router.js"); // Router of all http requests
-  const pool = require("./pool.js");     // SQL connection pool for graceful shutdown
   const setUpGracefulShutdown = require("./shutdown.js"); // Graceful shutdown setup function
-
 
 
   // Create express application with cors
@@ -46,15 +43,15 @@ async function main() {
   app.use(express.static(path.join(__dirname, "dist")));
 
   // Call graceful shutdown setup with server and sql instance
-  setUpGracefulShutdown(server, pool);
+  setUpGracefulShutdown(server);
 }
 
 console.info(
   "Console emoji meanings:\n"
   + "🚀 is for backend startup\n"
-  + "☎️ is for router logs\n"
-  + "🤠 is for handler logs\n"
-  + "🌊 is for pool logs\n"
+  + "☎️ is for API router logs\n"
+  + "🤠 is for SQL handler logs\n"
+  + "🌊 is for SQLite logs\n"
   + "💀 is for shutdown logs\n"
   + "\nThis is for quicker readability when testing\n"
   );
