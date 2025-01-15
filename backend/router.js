@@ -42,8 +42,8 @@ const router = express.Router();
       // No params to validate, send get all call to handler, parse data, ship it
       try {
         const result = await handler.GetAll("words");
-        console.log(`☎️ GET WORDS success`);
         respond.status(200).send(result);
+        console.log(`☎️ GET WORDS success`);
       } catch (e) {
         // If validation error, bad request, else internal server error
         console.log(`☎️ GET WORDS fail, error: `, e);
@@ -271,8 +271,10 @@ const router = express.Router();
       try {
         const result = await handler.GetAll("tags");
         respond.status(200).send(result);
+        console.log(`☎️ GET WORDS success`);
       } catch (e) {
         // If validation error, bad request, else internal server error
+        console.log(`☎️ GET WORDS fail, error: `, e);
         respond.sendStatus((e.name === "ValidationError") ? 400 : 500);
       } finally {
         console.log(`☎️ GET TAGS end`);
