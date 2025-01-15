@@ -24,7 +24,7 @@ html, body {
   justify-content: space-between;
 }
 
-.flex.horizontal-center {
+.flex.vertical-center {
   align-items: center;
 }
 
@@ -32,48 +32,38 @@ html, body {
   flex-direction: column;
 }
 
-button, input[type=submit] {
-  border-width: 5px;
-  border-radius: 15px;
-  border-style: solid;
-  background-color: #b7edff;
-  border-color: #b7edff;
-  min-height: 30px;
-  padding: 2px;
-  min-width: 60px;
-  font-size: 1em;
-  cursor: pointer;
-  background-color: #75ddff;
-  border-color: #75ddff;
-}
-button:hover, input[type=submit]:hover {
-  background-color: #2ccaff;
-  border-color: #2ccaff;
-}
-button:active, input[type=submit]:active {
-  background-color: #2fb0db;
-  border-color: #2fb0db;
+.flex.wrap {
+  flex-wrap: wrap;
 }
 
+@media only screen and (max-width: 900px) {
+  .flex.wrap {
+    flex-direction: column;
+  }
+}
 input[type=text] {
-  border-width: 5px;
+  border-width: 3px;
   border-radius: 15px;
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
+  border-width: 3px;
+  padding: 2px;
+  padding: 0px 5px 0px 5px;
   min-height: 30px;
   background-color: white;
   border-color: white;
-  padding: 0px 5px 0px 5px;
+}
+input[type=text]:hover {
+  border-color: #c2dee6;
 }
 
 header {
-  border-width: 5px;
+  border-width: 3px;
   border-radius: 15px;
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
-  min-height: 30px;
   border-radius: 50px;
   padding: 0px 20px 0px 20px;
   margin: 10px;
@@ -86,24 +76,136 @@ header h1 {
   font-stretch: extra-expanded;
 }
 header h4 {
-  border-width: 5px;
+  border-width: 3px;
   border-radius: 15px;
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
-  min-height: 30px;
   padding: 2px;
-  min-width: 60px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #75ddff;
+  border-color: #75ddff;
+  min-height: 30px;
+  padding: 0 5px 0 5px;
+  display: inline-flex;
+  align-items: center;
+}
+header h4:hover {
+  background-color: #75ddff;
+  border-color: #2ccaff;
+}
+header h4:active {
+  background-color: #2fb0db;
+  border-color: #2fb0db;
+}
+
+.button {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  padding: 2px;
   font-size: 1em;
   cursor: pointer;
   background-color: #75ddff;
   border-color: #75ddff;
 }
-header h4:hover {
-  background-color: #2ccaff;
+.button:hover {
+  background-color: #75ddff;
   border-color: #2ccaff;
 }
-header h4:active {
+.button:active {
+  background-color: #2fb0db;
+  border-color: #2fb0db;
+}
+
+.button.green {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  padding: 2px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #75ddff;
+  border-color: #75ddff;
+  margin-left: 5px;
+  background-color: #33FF66;
+  border-color: #33FF66;
+  color: #0C5F21;
+}
+.button.green:hover {
+  background-color: #75ddff;
+  border-color: #2ccaff;
+}
+.button.green:active {
+  background-color: #2fb0db;
+  border-color: #2fb0db;
+}
+.button.green:hover {
+  background-color: #33FF66;
+  border-color: #1fce4a;
+}
+.button.green:active {
+  background-color: #1fce4a;
+  border-color: #1fce4a;
+}
+
+.button.red {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  padding: 2px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #75ddff;
+  border-color: #75ddff;
+  margin-left: 5px;
+  background-color: #ff6161;
+  border-color: #ff6161;
+  color: #4d0000;
+}
+.button.red:hover {
+  background-color: #75ddff;
+  border-color: #2ccaff;
+}
+.button.red:active {
+  background-color: #2fb0db;
+  border-color: #2fb0db;
+}
+.button.red:hover {
+  background-color: #ff6161;
+  border-color: #d13434;
+}
+.button.red:active {
+  background-color: #d13434;
+  border-color: #d13434;
+}
+
+.flip-button {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  padding: 2px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #75ddff;
+  border-color: #75ddff;
+  width: 40px;
+  font-size: x-large;
+}
+.flip-button:hover {
+  background-color: #75ddff;
+  border-color: #2ccaff;
+}
+.flip-button:active {
   background-color: #2fb0db;
   border-color: #2fb0db;
 }
@@ -114,24 +216,84 @@ header h4:active {
   font-size: small;
 }
 
-.user-view .word-box {
-  border-width: 5px;
+.tag-pool {
+  border-width: 3px;
   border-radius: 15px;
   border-style: solid;
   background-color: #b7edff;
   border-color: #b7edff;
-  min-height: 30px;
-  margin: 3px;
-  padding: 3px;
+  border-radius: 15px;
+  border-width: 1px;
+  background-color: #649db1;
+  border-color: #649db1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag-pool .tag {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  margin: 2px;
+  height: fit-content;
+  align-items: center;
+  background-color: #75ddff;
+  border-color: #75ddff;
+}
+.tag-pool .tag button {
+  display: inline-flex;
+  align-items: center;
+  max-width: 17px;
+  max-height: 17px;
+  margin-left: 5px;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.user-view .tag-section {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  min-width: 300px;
+  height: fit-content;
+}
+.user-view .tag-section h2 {
+  margin: 10px 3px 5px 3px;
+}
+.user-view .tag-section form {
+  margin: 3px 3px 7px 3px;
+}
+.user-view .tag-section form input[type=submit] {
+  width: 50px;
+}
+.user-view .tag-section .tag-pool {
+  margin: 3px 3px 20px 3px;
+}
+.user-view .word-section {
   min-width: 600px;
   max-width: 600px;
 }
-.user-view .word-box .word {
+.user-view .word-section .word-box {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  margin: 3px;
+  padding: 3px;
+}
+.user-view .word-section .word-box .word {
   flex: 1;
 }
-.user-view .word-box .word.foo {
+.user-view .word-section .word-box .word.foo {
   text-align: left;
 }
-.user-view .word-box .word.bar {
+.user-view .word-section .word-box .word.bar {
   text-align: right;
+}
+.user-view .word-section .word-box input[type=text] {
+  width: 200px;
 }/*# sourceMappingURL=llfsa.css.map */

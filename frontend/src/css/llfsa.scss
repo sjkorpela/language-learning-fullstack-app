@@ -19,31 +19,29 @@
 
 // Rounds element corners, default values changeable after including
 @mixin rounded {
-  border-width: 5px;              // Border width, default 5px
+  border-width: 3px;              // Border width, default 3px
   border-radius: 15px;            // How round the corners are, default 12px but larger recommended for larger items
   border-style: solid;            // Makes the border visible
   background-color: #b7edff;  // Colors the element background
   border-color: #b7edff;      // Colors the border to match
-  min-height: 30px;
 }
 
 // Default look for buttons
 @mixin button {
-  @include rounded; // Round corners
-  padding: 2px;     // Pad to give button text space
-  min-width: 60px;  // Set min width to ensure clickability
-  font-size: 1em;   // Increase text size
-  cursor: pointer;  // Set cursor to pointer to show clickability
+  @include rounded;  // Round corners
+  padding: 2px;      // Pad to give button text space
+  font-size: 1em;    // Increase text size
+  cursor: pointer;   // Set cursor to pointer to show clickability
 
   background-color: #75ddff;    // Colors the element background
   border-color: #75ddff;        // Colors the border to match
 
-  &:hover {         // Change button color when pointer is on it to show clickability
-    background-color: #2ccaff;  // Change element background color
+  &:hover {          // Change button color when pointer is on it to show clickability
+    background-color: #75ddff;  // Change element background color
     border-color: #2ccaff;      // Change border color to match
   }
 
-  &:active {        // Change button color when clicked to show it being clicked
+  &:active {         // Change button color when clicked to show it being clicked
     background-color: #2fb0db;  // Change element background color
       border-color: #2fb0db;    // Change border color to match
   }
@@ -81,7 +79,7 @@ html, body {
   justify-content: space-between;
 }
 
-.flex.horizontal-center {
+.flex.vertical-center {
   align-items: center;
 }
 
@@ -89,20 +87,32 @@ html, body {
   flex-direction: column;
 }
 
+.flex.wrap {
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 900px) {
+  .flex.wrap {
+    flex-direction: column;
+  }
+}
+
 //
 // Generic classes and defenitions for mixed use
 //
 
-button, input[type=submit] {
-  @include button;
-}
-
 input[type=text] {
   @include rounded;
+  border-width: 3px;
+  padding: 2px;
+  padding: 0px 5px 0px 5px; // Stretches element vertically slightly so cursor is always visible
+  min-height: 30px;
+
   background-color: white;
   border-color: white;
-
-  padding: 0px 5px 0px 5px; // Stretches element vertically slightly so cursor is always visible
+  &:hover {
+    border-color: #c2dee6;
+  }
 }
 
 header {
@@ -121,13 +131,102 @@ header {
 
   h4 {
     @include button;          // Make link to admin look like button
+    min-height: 30px;
+    padding: 0 5px 0 5px;
+
+    display: inline-flex;
+    align-items: center;
   }
+}
+
+.button {
+  @include button;
+}
+
+.button.green {
+  @include button;
+  margin-left: 5px;
+
+  background-color: #33FF66;
+  border-color: #33FF66;
+  color: #0C5F21;
+
+  &:hover {
+    background-color: #33FF66;
+    border-color: #1fce4a;
+  }
+
+  &:active {
+    background-color: #1fce4a;
+    border-color: #1fce4a;
+  }
+}
+
+.button.red {
+  @include button;
+  margin-left: 5px;
+
+  background-color: #ff6161;
+  border-color: #ff6161;
+  color: #4d0000;
+
+  &:hover {
+    background-color: #ff6161;
+    border-color: #d13434;
+  }
+
+  &:active {
+    background-color: #d13434;
+    border-color: #d13434;
+  }
+}
+
+.flip-button {
+  @include button;
+  width: 40px;
+  font-size: x-large;
 }
 
 .flip-button::after {
   content: "sync_alt";
   font-family: "Material Icons";
   font-size: small;
+}
+
+.tag-pool {
+  @include rounded;
+  border-radius: 15px;
+  border-width: 1px;
+
+  background-color: #649db1;
+  border-color: #649db1;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  .tag {
+    @include rounded;
+    margin: 2px;
+    height: fit-content;
+
+    align-items: center;
+
+    background-color: #75ddff;
+    border-color: #75ddff;
+
+    button {
+      display: inline-flex;
+      align-items: center;
+
+      max-width: 17px;
+      max-height: 17px;
+
+      margin-left: 5px;
+
+      border-radius: 50px;
+      text-align: center;
+    }
+  }
 }
 
 
@@ -139,28 +238,55 @@ header {
 
 .user-view {
 
-  .word-box {
+  .tag-section {
     @include rounded;
+    min-width: 300px;
+    height: fit-content;
 
-    margin: 3px;
-    padding: 3px;
+    h2 {
+      margin: 10px 3px 5px 3px;
+    }
 
+    form {
+      margin: 3px 3px 7px 3px;
+
+      input[type=submit] {
+        width: 50px;
+      }
+    }
+
+    .tag-pool {
+      margin: 3px 3px 20px 3px;
+    }
+  }
+
+  .word-section {
     min-width: 600px;
     max-width: 600px;
+    .word-box {
+      @include rounded;
 
-    .word {
-      // @include debug-border;
-      flex: 1;
-    }
+      margin: 3px;
+      padding: 3px;
 
-    .word.foo {
-      text-align: left;
-      // border-color: red;
-    }
+      .word {
+        // @include debug-border;
+        flex: 1;
+      }
 
-    .word.bar {
-      text-align: right;
-      // border-color: blue;
+      .word.foo {
+        text-align: left;
+        // border-color: red;
+      }
+
+      .word.bar {
+        text-align: right;
+        // border-color: blue;
+      }
+
+      input[type=text] {
+        width: 200px;
+      }
     }
   }
 }

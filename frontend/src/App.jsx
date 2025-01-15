@@ -30,15 +30,16 @@ export default function App() {
   }, [])
 
   async function fetchAll() {
-    const rawWords = await fetch("/api/words");
-    const words = await rawWords.json();
-    setWordList(words);
     const rawTags = await fetch("/api/tags");
     const tags = await rawTags.json();
     setTagList(tags);
 
-    console.log(words);
-    console.log(tags);
+    const rawWords = await fetch("/api/words");
+    const words = await rawWords.json();
+    setWordList(words);
+
+    console.log("words", words);
+    console.log("tags", tags);
   }
 
   // Create router structure
@@ -57,7 +58,7 @@ export default function App() {
         // Learn view aka user view, to learn words, default view of the app
         {
           path: "/learn",
-          element: <UserView tagList={tagList}  wordList={wordList}/>
+          element: <UserView wordList={wordList} tagList={tagList} />
         },
         // Admin view, to manage words
         {
