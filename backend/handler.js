@@ -30,10 +30,9 @@ const handlerFunctions = {
           resolve(data);
         }
       })
-
-      console.log(`🤠 GET ALL end`);
     })
   },
+
   GetRow(table, id) {
     return new Promise(async (resolve, reject) => {
       console.log(`🤠 GET ROW start, table:${table}`);
@@ -62,144 +61,117 @@ const handlerFunctions = {
           resolve(data);
         }
       })
-
-      console.log(`🤠 GET ROW end`);
     })
   },
 
-  PostWord(params) { },
-  PutWord(params) { },
-  PatchWord(params) { },
+  PostWord(params) {
+    return new Promise(async (resolve, reject) => {
+      console.log(`🤠 POST WORD start`);
+
+      // Validate params
+      try {
+
+        await schema.validateAsync({
+          "word": params.fooWord,
+          "lang": params.fooLang
+        })
+
+        await schema.validateAsync({
+          "word": params.barWord,
+          "lang": params.barLang
+        })
+
+        await schema.validateAsync({
+          "tags": params.tags
+        })
+
+      } catch (error) {
+        console.log(`🤠 POST WORD failed, rejecting, error:\n`, error);
+        reject(error);
+      }
+
+      // Build the SQL query
+      const query = (
+        "INSERT INTO words(fooWord, fooLang, barWord, barLang, tags) VALUES"
+        + "(?, ?, ?, ?, ?)"
+      )
+
+      // Send the query, and reject/resolve
+      database.all(
+        query,
+        [params.fooWord, params.fooLang, params.barWord, params.barLang, params.tags],
+        function (error, data) {
+        if (error) {
+          console.log(`🤠 POST WORD failed, rejecting, error:\n`, error);
+          reject(error);
+        } else {
+          console.log(`🤠 POST WORD succeeded, resolving`);
+          resolve(data);
+        }
+      })
+    })
+  },
+
+  PutWord(params) {
+    return new Promise(async (resolve, reject) => {
+      console.log(`🤠 PUT WORD start`);
+
+      // Validate params
+      try {
+
+        await schema.validateAsync({
+          "word": params.fooWord,
+          "lang": params.fooLang
+        })
+
+        await schema.validateAsync({
+          "word": params.barWord,
+          "lang": params.barLang
+        })
+
+        await schema.validateAsync({
+          "id": params.id,
+          "tags": params.tags
+        })
+
+      } catch (error) {
+        console.log(`🤠 PUT WORD failed, rejecting, error:\n`, error);
+        reject(error);
+      }
+
+      // Build the SQL query
+      const query = (
+        "UPDATE words SET "
+        + "fooWord = ?, "
+        + "fooLang = ?, "
+        + "barWord = ?, "
+        + "barLang = ?, "
+        + "tags = ? "
+        + "WHERE id = ?"
+      )
+
+      // Send the query, and reject/resolve
+      database.all(
+        query,
+        [params.fooWord, params.fooLang, params.barWord, params.barLang, params.tags, params.id],
+        function (error, data) {
+        if (error) {
+          console.log(`🤠 PUT WORD failed, rejecting, error:\n`, error);
+          reject(error);
+        } else {
+          console.log(`🤠 PUT WORD succeeded, resolving`);
+          resolve(data);
+        }
+      })
+    })
+  },
+
+  // PatchWord(params) { },
   DeleteWord(id) { },
 
   PostTag(params) { },
   PutTag(params) { },
-  PatchTag(params) { },
+  // PatchTag(params) { },
   DeleteTag(id) { }
 
 }
-
-const old = {
-  /**
-   * Gets all ids from given table. Called when an http get request is received with no given id.
-   * @param {String} table Name of the table data is to be gotten from. ex. "tests", "submissions"
-   */
-  GetAllTests() {
-    return new Promise((resolve, reject) => {
-      console.log(`🤠 GET ALL TESTS start`);
-
-      // Build the SQL query
-      query = "SELECT * FROM tests";
-
-      // Query the query, and reject/resolve
-      // pool.query(query, function (error, data) {
-      //   if (error) {
-      //     console.log(`🤠 GET ALL TESTS failed, rejecting\n`, error);
-      //     reject(error);
-      //   } else {
-      //     console.log(`🤠 GET ALL TESTS succeeded, resolving`);
-      //     resolve(data);
-      //   }
-      // });
-
-      console.log(`🤠 GET ALL TESTS end`);
-    })
-  },
-
-  /**
-   * !!!!Gets given id from given table. Called when an http get request is received with a given id.
-   * @param {String} table Name of the table data is to be gotten from. ex. "tests", "submissions"
-   */
-  GetTest(id) {
-    return new Promise((resolve, reject) => {
-      console.log(`🤠 GET TEST ${id} start`);
-
-      // Build the SQL query
-      query = "SELECT * FROM tests WHERE id = ?";
-
-      // Query the query, and reject/resolve
-      // pool.query(query, [id], function (error, data) {
-      //   if (error) {
-      //     console.log(`🤠 GET TEST ${id}, rejecting\n`, error);
-      //     reject(error);
-      //   } else {
-      //     console.log(`🤠 GET TEST ${id} succeeded, resolving`);
-      //     resolve(data);
-      //   }
-      // });
-
-      console.log(`🤠 GET TEST ${id}}`);
-    })
-  },
-
-  /**
-   * Gets all submissions for given test id.
-   * @param {Number} testId
-   */
-  GetTestSubmissions(id) {
-    return new Promise((resolve, reject) => {
-      console.log(`🤠 GET TEST SUBMISSIONS start, id:${id}`);
-
-      resolve("moi");
-
-      console.log(`🤠 GET TEST SUBMISSIONS end, id:${id}`);
-    })
-  },
-
-  PostTest({ testName }) {
-    console.log(`🤠 POST TEST start`);
-
-
-
-    console.log(`🤠 POST TEST end`);
-  },
-
-
-
-  GetAllWords() {
-    return new Promise((resolve, reject) => {
-      console.log(`🤠 GET ALL WORDS start`);
-
-      // Build the SQL query
-      query = "SELECT * FROM words";
-
-      // Query the query, and reject/resolve
-      // pool.query(query, function (error, data) {
-      //   if (error) {
-      //     console.log(`🤠 GET ALL WORDS failed, rejecting\n`, error);
-      //     reject(error);
-      //   } else {
-      //     console.log(`🤠 GET ALL WORDS succeeded, resolving`);
-      //     resolve(data);
-      //   }
-      // });
-
-      console.log(`🤠 GET ALL WORDS end`);
-    })
-  },
-
-  PostWord({ word1, word2 }) {
-    return new Promise((resolve, reject) => {
-
-
-      console.log(`🤠 POST WORD start`);
-
-      query = "INSERT INTO words(word1, word2) VALUES (?, ?)";
-
-      // Query the query, and reject/resolve
-      // pool.query(query, [word1, word2], function (error, data) {
-      //   if (error) {
-      //     console.log(`🤠 POST WORD failed, rejecting\n`, error);
-      //     reject(error);
-      //   } else {
-      //     console.log(`🤠 POST WORD succeeded, resolving`);
-      //     resolve(data);
-      //   }
-      // });
-
-      console.log(`🤠 POST WORD end`);
-    })
-  },
-}
-
-module.exports = handlerFunctions;
