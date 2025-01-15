@@ -175,3 +175,5 @@ const handlerFunctions = {
   DeleteTag(id) { }
 
 }
+
+module.exports = handlerFunctions;
