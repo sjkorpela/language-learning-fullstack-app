@@ -6,11 +6,10 @@ export default function AdminView() {
 
   return (
     <>
-      <p>admin</p>
+      <p>admin nopee testi1243</p>
       <Link to="/learn">
         <h4 className="nav-option">back</h4>
       </Link>
     </>
-
   )
 }
