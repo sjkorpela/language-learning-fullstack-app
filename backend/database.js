@@ -54,7 +54,8 @@ const database = new sqlite3.Database(":memory:", (error) => {
         + '("[]", "uni", "hakasulkeet", "fin", "3"),'
         + '("{}", "uni", "aaltosulkeet", "fin", "3"),'
         + '("〈〉", "uni", "kulmasulkeet", "fin", "3"),'
-        + '("foofoofoofoofoofoofoofoofoofoo", "eng", "barbarbarbarbarbarbarbarbarbar", "fin", "3")'
+        + '("foofoofoofoofoofoofoofoofoofoo", "eng", "barbarbarbarbarbarbarbarbarbar", "fin", "3"),'
+        + '("untagged", "eng", "laputtamaton", "fin", "")'
       )
     });
   }
