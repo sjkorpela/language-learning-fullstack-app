@@ -46,7 +46,7 @@ const database = new sqlite3.Database(":memory:", (error) => {
       database.run(
         "INSERT INTO words(fooWord, fooLang, barWord, barLang, tags) VALUES"
         + '("cat", "eng", "kissa", "fin", "1"),'
-        + '("hund", "swe", "koira", "dog", "1"),'
+        + '("hund", "swe", "koira", "fin", "1"),'
         + '("kivi", "swe", "kiivi", "fin", "1,2"),'
         + '("pineapple", "eng", "ananas", "fin", "2"),'
         + '("unemployed", "eng", "työtön", "fin", "3"),'
