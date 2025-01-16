@@ -20,7 +20,7 @@ export default function UserView({ wordList, tagList }) {
     // console.log("UserView UEW", words);
     // console.log("UserView UET", tags);
     // console.log("UserView UEF", filters);
-    console.log("UserView UES", scores);
+    // console.log("UserView UES", scores);
 
     setLists();
   })

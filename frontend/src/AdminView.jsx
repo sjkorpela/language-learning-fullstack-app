@@ -49,7 +49,6 @@ export default function AdminView({ wordList, tagList, updateLists }) {
   }
 
   function fitsFilter(filters, tags) {
-    console.log("checking if filtered");
 
     // Default value is visible, becomes invisible if a filter is missed
     let visible = true;
@@ -59,14 +58,12 @@ export default function AdminView({ wordList, tagList, updateLists }) {
 
       for (let tag of tags) {
         if (filter.id == tag.id) {
-          console.log("found filter " + filter.id);
           found = true;
           break;
         }
       }
 
       if (!found) {
-        console.log("did not find filter " + filter.id);
         visible = false;
       }
     }
