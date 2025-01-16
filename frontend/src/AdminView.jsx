@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 // Import word list item element
 import Word from "./AdminView/Word.jsx"
 import CheckList from "./CheckList.jsx";
+import TagManager from "./AdminView/TagManager.jsx";
 
 export default function AdminView({ wordList, tagList }) {
 
@@ -73,40 +74,6 @@ export default function AdminView({ wordList, tagList }) {
     return visible;
   }
 
-  async function postTag(event) {
-    event.preventDefault();
-
-    const name = event.target.name.value;
-
-    const response = await fetch("api/tags", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        "name": name
-      })
-    })
-
-    console.log(response);
-    console.log("fetching tags");
-
-    const rawTags = await fetch("/api/tags");
-    const tags = await rawTags.json();
-    setTags(tags);
-  }
-
-  async function deleteTag(id) {
-
-    console.log("delete " + id);
-
-    const response = await fetch(`api/tags/${id}`, {
-      method: "DELETE"
-    })
-
-    const rawTags = await fetch("/api/tags");
-    const tags = await rawTags.json();
-    setTags(tags);
-  }
-
   return (
     <div className="full-window admin-view flex align-center column">
 
@@ -123,22 +90,7 @@ export default function AdminView({ wordList, tagList }) {
 
           <div className="side-box">
             <h2><big>Tags</big> <small><i>Create and delete tags</i></small></h2>
-            <form onSubmit={postTag}>
-              <input type="text" id="name" name="name" placeholder="Add new tag" required></input>
-              <input type="submit" className="button green" value="Add"></input>
-            </form>
-            <div className="tag-pool flex justify-center">
-                {
-                  tags.map((tag) => {
-                    return (
-                      <div key={tag.id} className="tag flex">
-                        {tag.name}
-                        <button onClick={() => deleteTag(tag.id)} className="button red">X</button>
-                      </div>
-                    )
-                  })
-                }
-              </div>
+            <TagManager tags={tags} />
           </div>
 
           <div className="side-box">
