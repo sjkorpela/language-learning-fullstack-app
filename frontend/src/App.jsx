@@ -21,11 +21,10 @@ import UserView from "./UserView";
  */
 export default function App() {
 
-  const [wordList, setWordList] = useState();
-  const [tagList, setTagList] = useState();
+  const [wordList, setWordList] = useState([]);
+  const [tagList, setTagList] = useState([]);
 
   useEffect(() => {
-    // console.log("App UE", "Fetching words and tags");
     fetchAll();
   }, [])
 
@@ -40,9 +39,6 @@ export default function App() {
       word.tags = await formatTags(word.tags, tags);
     })
     setWordList(words);
-
-    // console.log("words", words);
-    // console.log("tags", tags);
   }
 
   async function formatTags(tagString, tagList) {
@@ -99,12 +95,12 @@ export default function App() {
         // Learn view aka user view, to learn words, default view of the app
         {
           path: "/learn",
-          element: <UserView wordList={wordList} tagList={tagList} />
+          element: <UserView wordList={wordList} tagList={tagList} updateLists={fetchAll} />
         },
         // Admin view, to manage words
         {
           path: "/admin",
-          element: <AdminView wordList={wordList} tagList={tagList} />
+          element: <AdminView wordList={wordList} tagList={tagList} updateLists={fetchAll}/>
         }
       ]
     }
