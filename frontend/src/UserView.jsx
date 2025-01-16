@@ -29,49 +29,8 @@ export default function UserView({ wordList, tagList }) {
     }
 
     if (words.length <= 0 && wordList != undefined) {
-      await wordList.forEach(async (word) => {
-        word.tags = await formatTags(word.tags);
-      })
       setWords(wordList);
     }
-  }
-
-  async function formatTags(tagString) {
-    return new Promise(async (resolve) => {
-
-      //If tag string is already array, return it as is
-      if (tagString instanceof Array) {
-        return tagString;
-      }
-
-      // Array to store parsed ids in
-      const ids = [];
-
-      // Regex to find digits of any length
-      const regex = new RegExp(/(\d+)/g);
-
-      // Find and store all ids from tag string, "1,2,3" -> [1, 2, 3]
-      const matches = [...tagString.matchAll(regex)];
-      matches.forEach((it) => {
-        ids.push(it[0]);
-      })
-
-      // Array to store tags in
-      const tags = [];
-
-      // Find all tags based on id from tag list
-      for (let id of ids) {
-        for (let tag of tagList) {
-          if (tag.id == id) {
-            tags.push(tag);
-            break;
-          }
-        }
-      }
-
-      // Resolve with found tags
-      resolve(tags);
-    });
   }
 
   function updateFilters(event) {
