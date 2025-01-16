@@ -31,7 +31,6 @@ export default function UserView({ wordList, tagList }) {
     if (words.length <= 0 && wordList != undefined) {
       await wordList.forEach(async (word) => {
         word.tags = await formatTags(word.tags);
-        word.flipped = false;
       })
       setWords(wordList);
     }
