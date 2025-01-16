@@ -72,7 +72,7 @@ const handlerFunctions = {
       try {
 
         await schema.validateAsync({
-          "if": params.name
+          "id": id
         })
 
       } catch (error) {
