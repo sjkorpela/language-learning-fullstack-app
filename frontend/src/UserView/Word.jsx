@@ -55,7 +55,7 @@ export default function Word({ word, postScore }) {
     const answer = event.target.answer.value.toLowerCase().trim();
     const rightAnswer = (flipped) ? word.fooWord.toLowerCase().trim() : word.barWord.toLowerCase().trim();
 
-    console.log(answer + " vs " + rightAnswer, answer == rightAnswer);
+    // console.log(answer + " vs " + rightAnswer, answer == rightAnswer);
 
     const correct = answer == rightAnswer;
 

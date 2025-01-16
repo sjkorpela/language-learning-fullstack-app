@@ -25,7 +25,7 @@ export default function App() {
   const [tagList, setTagList] = useState();
 
   useEffect(() => {
-    console.log("App UE", "Fetching words and tags");
+    // console.log("App UE", "Fetching words and tags");
     fetchAll();
   }, [])
 
@@ -38,8 +38,8 @@ export default function App() {
     const words = await rawWords.json();
     setWordList(words);
 
-    console.log("words", words);
-    console.log("tags", tags);
+    // console.log("words", words);
+    // console.log("tags", tags);
   }
 
   // Create router structure
