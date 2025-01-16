@@ -182,7 +182,7 @@ const router = express.Router();
      * Is called when "url.com/api/words/{id}" is delete requested.
      * Responds with either status code 204 or status code 400/500.
      */
-    router.put("/api/words/:wordId", async (request, respond) => {
+    router.delete("/api/words/:wordId", async (request, respond) => {
       console.log(`☎️ DELETE WORD ID start, id:${request.params.wordId}`);
 
       // Parse params
@@ -192,8 +192,8 @@ const router = express.Router();
       try {
         await schema.validateAsync({ "id": id })
 
-        const result = await handler.DeleteWord(id);
-        respond.status(204);
+        const result = await handler.DeleteRow("words", id);
+        respond.sendStatus(204);
       } catch (e) {
         console.log(e);
         // If validation error, bad request, else internal server error
@@ -208,10 +208,10 @@ const router = express.Router();
   //#region /api/words PATCH
 
     /**
-     * Is called when "url.com/api/words/{id}" is pacth requested.
+     * Is called when "url.com/api/words/{id}" is patch requested.
      * Responds with either status code 201 or status code 400/500.
      */
-    router.put("/api/words/:wordId", async (request, respond) => {
+    router.patch("/api/words/:wordId", async (request, respond) => {
       console.log(`☎️ PATCH WORD ID start, id:${request.params.wordId}`);
 
       // Parse params
@@ -271,10 +271,10 @@ const router = express.Router();
       try {
         const result = await handler.GetAll("tags");
         respond.status(200).send(result);
-        console.log(`☎️ GET WORDS success`);
+        console.log(`☎️ GET TAGS success`);
       } catch (e) {
         // If validation error, bad request, else internal server error
-        console.log(`☎️ GET WORDS fail, error: `, e);
+        console.log(`☎️ GET TAGS fail, error: `, e);
         respond.sendStatus((e.name === "ValidationError") ? 400 : 500);
       } finally {
         console.log(`☎️ GET TAGS end`);
@@ -316,15 +316,17 @@ const router = express.Router();
       console.log(`☎️ POST TAG start`);
 
       // Parse params
-      const name = request.body.name;
+      const params = {
+        name: request.body.name
+      }
 
       // Validate params, send post call to handler
       try {
 
-        await schema.validateAsync({ "tag": name })
+        await schema.validateAsync({ "tag": params.name })
 
         const result = await handler.PostTag(params);
-        respond.status(201);
+        respond.sendStatus(201);
       } catch (e) {
         console.log(e);
         // If validation error, bad request, else internal server error
@@ -360,7 +362,7 @@ const router = express.Router();
         })
 
         const result = await handler.PutTag(params);
-        respond.status(201);
+        respond.sendStatus(201);
       } catch (e) {
         console.log(e);
         // If validation error, bad request, else internal server error
@@ -378,7 +380,7 @@ const router = express.Router();
      * Is called when "url.com/api/tags/{id}" is delete requested.
      * Responds with either status code 204 or status code 400/500.
      */
-    router.put("/api/tags/:tagId", async (request, respond) => {
+    router.delete("/api/tags/:tagId", async (request, respond) => {
       console.log(`☎️ DELETE TAG ID start, id:${request.params.tagId}`);
 
       // Parse params
@@ -388,8 +390,8 @@ const router = express.Router();
       try {
         await schema.validateAsync({ "id": id })
 
-        const result = await handler.DeleteTag(id);
-        respond.status(204);
+        const result = await handler.DeleteRow("tags", id);
+        respond.sendStatus(204);
       } catch (e) {
         console.log(e);
         // If validation error, bad request, else internal server error
@@ -407,7 +409,7 @@ const router = express.Router();
      * Is called when "url.com/api/tags/{id}" is pacth requested.
      * Responds with either status code 201 or status code 400/500.
      */
-    router.put("/api/tags/:tagId", async (request, respond) => {
+    router.patch("/api/tags/:tagId", async (request, respond) => {
       console.log(`☎️ PATCH TAG ID start, id:${request.params.tagId}`);
 
       // Parse params
