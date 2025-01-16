@@ -216,12 +216,12 @@ const router = express.Router();
 
       // Parse params
       const params = {
-        id: request.params.wordId,
-        fooWord: request.body.fooWord,
         fooLang: request.body.fooLang,
-        barWord: request.body.barWord,
+        fooWord: request.body.fooWord,
         barLang: request.body.barLang,
-        tags: request.body.tags
+        barWord: request.body.barWord,
+        tags: request.body.tags,
+        id: parseInt(request.params.wordId)
       }
 
       // Validate params, send post call to handler
@@ -241,8 +241,14 @@ const router = express.Router();
           "tags": params.tags
         })
 
+        if (params.id == undefined) {
+          const error = new Error();
+          error.name = "ValidationError"
+          throw error;
+        }
+
         const result = await handler.PatchWord(params);
-        respond.status(201);
+        respond.sendStatus(201);
       } catch (e) {
         console.log(e);
         // If validation error, bad request, else internal server error
@@ -406,7 +412,7 @@ const router = express.Router();
   //#region /api/tags PATCH
 
     /**
-     * Is called when "url.com/api/tags/{id}" is pacth requested.
+     * Is called when "url.com/api/tags/{id}" is patch requested.
      * Responds with either status code 201 or status code 400/500.
      */
     router.patch("/api/tags/:tagId", async (request, respond) => {
@@ -424,6 +430,12 @@ const router = express.Router();
           "id": params.id,
           "tag": params.name
         })
+
+        if (params.id == undefined) {
+          const error = new Error();
+          error.name = "ValidationError"
+          throw error;
+        }
 
         const result = await handler.PatchTag(params);
         respond.status(201);
