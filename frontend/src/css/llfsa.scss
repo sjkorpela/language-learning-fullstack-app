@@ -99,6 +99,10 @@ html, body {
   flex-grow: 1;
 }
 
+.flex.align-end {
+  align-items: end;
+}
+
 //
 // Generic classes and defenitions for mixed use
 //
@@ -115,6 +119,14 @@ input[type=text] {
   &:hover {
     border-color: #c2dee6;
   }
+}
+
+input[type=text].right {
+  border-color: #33FF66
+}
+
+input[type=text].wrong {
+  border-color:#ff6161
 }
 
 header {
@@ -235,6 +247,32 @@ header {
   }
 }
 
+.side-section {
+  min-width: 300px;
+  max-width: 600px;
+  height: fit-content;
+}
+
+.side-box {
+  @include rounded;
+  min-width: 300px;
+  max-width: 600px;
+  margin: 5px;
+  height: fit-content;
+
+  h2 {
+    margin: 10px 3px 5px 3px;
+  }
+
+  form {
+    margin: 3px 3px 7px 3px;
+
+    input[type=submit] {
+      width: 50px;
+    }
+  }
+}
+
 .tag-section {
   @include rounded;
   min-width: 300px;
@@ -285,6 +323,15 @@ header {
 
     input[type=text] {
       width: 200px;
+    }
+
+    .tag-pool {
+      background-color: #b7edff;
+      border-color: #b7edff;
+    }
+
+    div.flex {
+      margin-bottom: 3px;
     }
   }
 }

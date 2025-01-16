@@ -44,6 +44,10 @@ html, body {
   flex-grow: 1;
 }
 
+.flex.align-end {
+  align-items: end;
+}
+
 input[type=text] {
   border-width: 3px;
   border-radius: 15px;
@@ -59,6 +63,14 @@ input[type=text] {
 }
 input[type=text]:hover {
   border-color: #c2dee6;
+}
+
+input[type=text].right {
+  border-color: #33FF66;
+}
+
+input[type=text].wrong {
+  border-color: #ff6161;
 }
 
 header {
@@ -254,6 +266,33 @@ header h4:active {
   text-align: center;
 }
 
+.side-section {
+  min-width: 300px;
+  max-width: 600px;
+  height: fit-content;
+}
+
+.side-box {
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: #b7edff;
+  border-color: #b7edff;
+  min-width: 300px;
+  max-width: 600px;
+  margin: 5px;
+  height: fit-content;
+}
+.side-box h2 {
+  margin: 10px 3px 5px 3px;
+}
+.side-box form {
+  margin: 3px 3px 7px 3px;
+}
+.side-box form input[type=submit] {
+  width: 50px;
+}
+
 .tag-section {
   border-width: 3px;
   border-radius: 15px;
@@ -301,4 +340,11 @@ header h4:active {
 }
 .word-section .word-box input[type=text] {
   width: 200px;
+}
+.word-section .word-box .tag-pool {
+  background-color: #b7edff;
+  border-color: #b7edff;
+}
+.word-section .word-box div.flex {
+  margin-bottom: 3px;
 }/*# sourceMappingURL=llfsa.css.map */

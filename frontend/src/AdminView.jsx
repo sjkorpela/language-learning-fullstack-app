@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Import word list item element
-import Word from "./Word"
+import Word from "./AdminView/Word.jsx"
 
 export default function AdminView({ wordList, tagList }) {
 

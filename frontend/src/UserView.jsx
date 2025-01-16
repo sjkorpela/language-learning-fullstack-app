@@ -5,18 +5,20 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Import word list item element
-import Word from "./Word"
+import Word from "./UserView/Word.jsx"
 
 export default function UserView({ wordList, tagList }) {
 
   const [words, setWords] = useState([]);
   const [tags, setTags] = useState([]);
   const [filters, setFilters] = useState([]);
+  const [scores, setScores] = useState([])
 
   useEffect(() => {
-    console.log("UserView UEW", words);
-    console.log("UserView UET", tags);
-    console.log("UserView UEF", filters);
+    // console.log("UserView UEW", words);
+    // console.log("UserView UET", tags);
+    // console.log("UserView UEF", filters);
+    console.log("UserView UES", scores);
 
     setLists();
   })
@@ -29,7 +31,8 @@ export default function UserView({ wordList, tagList }) {
     if (words.length <= 0 && wordList != undefined) {
       const taggedWords = await formatWordTags(wordList);
       const langedWords = await formatWordLangs(taggedWords);
-      setWords(langedWords);
+      const flipWords = await addFlippedToWords(langedWords);
+      setWords(flipWords);
     }
   }
 
@@ -49,6 +52,17 @@ export default function UserView({ wordList, tagList }) {
       words.forEach(async (word) => {
         word.fooLang = formatLang(word.fooLang);
         word.barLang = formatLang(word.barLang);
+      })
+
+      resolve(words);
+    })
+  }
+
+  async function addFlippedToWords(words) {
+    return new Promise(async (resolve) => {
+
+      words.forEach(async (word) => {
+        word.flipped = false;
       })
 
       resolve(words);
@@ -155,6 +169,28 @@ export default function UserView({ wordList, tagList }) {
     return visible;
   }
 
+  function postScore(word, correct) {
+    const temp = [];
+
+    for (let i = 0; i < scores.length; i++) {
+
+      // If word score has been posted before, return
+      if (scores[i].id == word.id) {
+        return;
+      }
+
+      temp[i] = scores[i];
+    }
+
+    temp.push({
+      id: word.id,
+      score: (correct) ? 1 : 0,
+      tags: word.tags
+    })
+
+    setScores(temp);
+  }
+
   return (
     <div className="full-window user-view flex align-center column">
 
@@ -167,30 +203,42 @@ export default function UserView({ wordList, tagList }) {
 
       <div className="flex wrap justify-center">
 
-        <section className="tag-section flex-grow">
+        <section className="side-section flex-grow">
 
-          <h2><big>Filter</big> <small><i>Filter words by tags</i></small></h2>
-          <form onSubmit={updateFilters}>
-            <table className="filter-list">
-              <tbody>
-                {
-                  tags.map((tag) => {
-                    return (
-                      <tr key={tag.id}>
-                        <td><input type="checkbox" name={tag.name}></input></td>
-                        <td>{tag.name}</td>
-                      </tr>
-                    )
-                  })
-                }
-              </tbody>
-            </table>
-            <button type="submit" className="button">Apply</button>
-          </form>
+          <div className="side-box">
+            <h2><big>Score</big> <small><i>Scores filtered by tags</i></small></h2>
+            tag: 100p
+          </div>
+
+          {/* <div className="side-box">
+            <h2><big>Options</big> <small><i>AAAAAAAAAAAA</i></small></h2>
+          </div> */}
+
+          <div className="side-box">
+            <h2><big>Filter</big> <small><i>Filter words by tags</i></small></h2>
+            <form onSubmit={updateFilters}>
+              <table className="filter-list">
+                <tbody>
+                  {
+                    tags.map((tag) => {
+                      return (
+                        <tr key={tag.id}>
+                          <td><input type="checkbox" name={tag.name}></input></td>
+                          <td>{tag.name}</td>
+                        </tr>
+                      )
+                    })
+                  }
+                </tbody>
+              </table>
+              <button type="submit" className="button">Apply</button>
+            </form>
+          </div>
         </section>
 
 
         <section className="word-section">
+
           <div className="word-list">
             {
               words.map((word) => {
@@ -201,7 +249,7 @@ export default function UserView({ wordList, tagList }) {
                 }
                 return (
                   <div key={word.id}>
-                    <Word word={word} />
+                    <Word word={word} postScore={postScore} />
                   </div>
                 )
               })
