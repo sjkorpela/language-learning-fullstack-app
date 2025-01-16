@@ -29,44 +29,14 @@ export default function UserView({ wordList, tagList }) {
     }
 
     if (words.length <= 0 && wordList != undefined) {
-      const taggedWords = await formatWordTags(wordList);
-      const langedWords = await formatWordLangs(taggedWords);
-      const flipWords = await addFlippedToWords(langedWords);
-      setWords(flipWords);
-    }
-  }
-
-  async function formatWordTags(words) {
-    return new Promise(async (resolve) => {
-      words.forEach(async (word) => {
+      await wordList.forEach(async (word) => {
         word.tags = await formatTags(word.tags);
-      })
-
-      resolve(words);
-    })
-  }
-
-  async function formatWordLangs(words) {
-    return new Promise(async (resolve) => {
-
-      words.forEach(async (word) => {
-        word.fooLang = formatLang(word.fooLang);
-        word.barLang = formatLang(word.barLang);
-      })
-
-      resolve(words);
-    })
-  }
-
-  async function addFlippedToWords(words) {
-    return new Promise(async (resolve) => {
-
-      words.forEach(async (word) => {
+        word.fooLang = await formatLang(word.fooLang);
+        word.barLang = await formatLang(word.barLang);
         word.flipped = false;
       })
-
-      resolve(words);
-    })
+      setWords(wordList);
+    }
   }
 
   function formatLang(lang) {
@@ -144,7 +114,6 @@ export default function UserView({ wordList, tagList }) {
   }
 
   function fitsFilter(filters, tags) {
-    console.log("checking if filtered");
 
     // Default value is visible, becomes invisible if a filter is missed
     let visible = true;
@@ -154,14 +123,12 @@ export default function UserView({ wordList, tagList }) {
 
       for (let tag of tags) {
         if (filter.id == tag.id) {
-          console.log("found filter " + filter.id);
           found = true;
           break;
         }
       }
 
       if (!found) {
-        console.log("did not find filter " + filter.id);
         visible = false;
       }
     }
