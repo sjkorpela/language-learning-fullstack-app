@@ -38,9 +38,21 @@ export default function Word({ word }) {
     }
   }
 
-  function applyChanges(event) {
+  async function applyChanges(event) {
     event.preventDefault();
-    console.log("moi");
+
+    const name = event.target.name.value;
+
+    const response = await fetch(`api/words/${word.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        "fooLang": event.target.fooLang.value,
+        "fooWord": event.target.fooWord.value,
+        "barLang": event.target.barLang.value,
+        "barWord": event.target.barWord.value
+      })
+    })
 
     setEditMode(false)
   }
@@ -50,13 +62,13 @@ export default function Word({ word }) {
       <form className="word-box" onSubmit={applyChanges}>
         <div className="flex">
           <div className="foo word">
-            <p><input type="text" name="answer" placeholder="Language" defaultValue={word.fooLang}></input></p>
-            <h3><input type="text" name="answer" placeholder="Word" defaultValue={word.fooWord}></input></h3>
+            <p><input type="text" name="fooLang" placeholder="Language" defaultValue={word.fooLang}></input></p>
+            <h3><input type="text" name="fooWord" placeholder="Word" defaultValue={word.fooWord}></input></h3>
           </div>
 
           <div className="bar word">
-            <p><input type="text" name="answer" placeholder="Language" defaultValue={word.barLang}></input></p>
-            <h3><input type="text" name="answer" placeholder="Word" defaultValue={word.barWord}></input></h3>
+            <p><input type="text" name="barLang" placeholder="Language" defaultValue={word.barLang}></input></p>
+            <h3><input type="text" name="barWord" placeholder="Word" defaultValue={word.barWord}></input></h3>
           </div>
         </div>
 
