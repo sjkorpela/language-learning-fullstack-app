@@ -14,7 +14,8 @@ const handlerFunctions = {
         await schema.validateAsync({ "table": table })
       } catch (error) {
         console.log(`🤠 GET ALL failed, rejecting\n`, error);
-          reject(error);
+        reject(error);
+        return;
       }
 
       // Build the SQL query, cannot escape table
@@ -46,6 +47,7 @@ const handlerFunctions = {
       } catch (error) {
         console.log(`🤠 GET ROW failed, rejecting, error:\n`, error);
         reject(error);
+        return;
       }
 
       // Build the SQL query, somehow ? don't work here
@@ -70,14 +72,11 @@ const handlerFunctions = {
 
       // Validate params
       try {
-
-        await schema.validateAsync({
-          "id": id
-        })
-
+        await schema.validateAsync({ "id": id })
       } catch (error) {
         console.log(`🤠 DELETE ROW failed, rejecting, error:\n`, error);
         reject(error);
+        return;
       }
 
       // Build the SQL query
@@ -123,6 +122,7 @@ const handlerFunctions = {
       } catch (error) {
         console.log(`🤠 POST WORD failed, rejecting, error:\n`, error);
         reject(error);
+        return;
       }
 
       // Build the SQL query
@@ -172,6 +172,7 @@ const handlerFunctions = {
       } catch (error) {
         console.log(`🤠 PUT WORD failed, rejecting, error:\n`, error);
         reject(error);
+        return;
       }
 
       // Build the SQL query
@@ -209,14 +210,11 @@ const handlerFunctions = {
 
       // Validate params
       try {
-
-        await schema.validateAsync({
-          "tag": params.name
-        })
-
+        await schema.validateAsync({ "tag": params.name})
       } catch (error) {
         console.log(`🤠 POST TAG failed, rejecting, error:\n`, error);
         reject(error);
+        return;
       }
 
       // Build the SQL query
