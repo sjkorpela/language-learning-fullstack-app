@@ -7,7 +7,7 @@ const Joi = require("joi");
 
 const schema = Joi.object({
   id: Joi.number().integer().min(1),
-  lang: Joi.string().min(3).max(3),
+  lang: Joi.string().min(1).max(30),
   word: Joi.string().min(1).max(30),
   tag: Joi.string().min(1).max(30),
   tags: Joi.string().min(1).max(30),

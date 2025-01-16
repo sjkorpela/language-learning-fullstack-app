@@ -18,9 +18,9 @@ const database = new sqlite3.Database(":memory:", (error) => {
         "CREATE TABLE words("
         + "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
         + "fooWord VARCHAR(30) NOT NULL,"
-        + "fooLang CHAR(3) NOT NULL,"
+        + "fooLang VARCHAR(30) NOT NULL,"
         + "barWord VARCHAR(30) NOT NULL,"
-        + "barLang CHAR(3) NOT NULL,"
+        + "barLang VARCHAR(30) NOT NULL,"
         + "tags VARCHAR(30) NOT NULL"
         + ")"
       );
@@ -45,18 +45,18 @@ const database = new sqlite3.Database(":memory:", (error) => {
       // Insert example words
       database.run(
         "INSERT INTO words(fooWord, fooLang, barWord, barLang, tags) VALUES"
-        + '("cat", "eng", "kissa", "fin", "1"),'
-        + '("hund", "swe", "koira", "fin", "1"),'
-        + '("kivi", "swe", "kiivi", "fin", "1,2"),'
-        + '("pineapple", "eng", "ananas", "fin", "2"),'
-        + '("unemployed", "eng", "työtön", "fin", "3"),'
-        + '("olio", "fin", "object", "eng", "3"),'
-        + '("()", "uni", "kaarisulkeet", "fin", "3"),'
-        + '("[]", "uni", "hakasulkeet", "fin", "3"),'
-        + '("{}", "uni", "aaltosulkeet", "fin", "3"),'
-        + '("〈〉", "uni", "kulmasulkeet", "fin", "3"),'
-        + '("foofoofoofoofoofoofoofoofoofoo", "eng", "barbarbarbarbarbarbarbarbarbar", "fin", "3"),'
-        + '("untagged", "eng", "laputtamaton", "fin", "")'
+        + '("cat", "English", "kissa", "Finnish", "1"),'
+        + '("hund", "Swedish", "koira", "Finnish", "1"),'
+        + '("kivi", "Swedish", "kiivi", "Finnish", "1,2"),'
+        + '("pineapple", "English", "ananas", "Finnish", "2"),'
+        + '("unemployed", "English", "työtön", "Finnish", "3"),'
+        + '("olio", "Finnish", "object", "English", "3"),'
+        + '("()", "Characters", "kaarisulkeet", "Finnish", "3"),'
+        + '("[]", "Characters", "hakasulkeet", "Finnish", "3"),'
+        + '("{}", "Characters", "aaltosulkeet", "Finnish", "3"),'
+        + '("〈〉", "Characters", "kulmasulkeet", "Finnish", "3"),'
+        + '("foofoofoofoofoofoofoofoofoofoo", "English", "barbarbarbarbarbarbarbarbarbar", "Finnish", "3"),'
+        + '("untagged", "eng", "laputtamaton", "Finnish", "")'
       )
     });
   }

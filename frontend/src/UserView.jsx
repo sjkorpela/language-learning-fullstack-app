@@ -31,34 +31,10 @@ export default function UserView({ wordList, tagList }) {
     if (words.length <= 0 && wordList != undefined) {
       await wordList.forEach(async (word) => {
         word.tags = await formatTags(word.tags);
-        word.fooLang = await formatLang(word.fooLang);
-        word.barLang = await formatLang(word.barLang);
         word.flipped = false;
       })
       setWords(wordList);
     }
-  }
-
-  function formatLang(lang) {
-
-    switch (lang) {
-      case "eng":
-        lang = "English";
-        break;
-      case "fin":
-        lang = "Finnish";
-        break;
-      case "swe":
-        lang = "Swedish";
-        break;
-      case "uni":
-        lang = "Character";
-        break;
-      default:
-        break;
-    }
-
-    return lang;
   }
 
   async function formatTags(tagString) {
