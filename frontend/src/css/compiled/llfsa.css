@@ -254,7 +254,7 @@ header h4:active {
   text-align: center;
 }
 
-.user-view .tag-section {
+.tag-section {
   border-width: 3px;
   border-radius: 15px;
   border-style: solid;
@@ -264,23 +264,24 @@ header h4:active {
   max-width: 600px;
   height: fit-content;
 }
-.user-view .tag-section h2 {
+.tag-section h2 {
   margin: 10px 3px 5px 3px;
 }
-.user-view .tag-section form {
+.tag-section form {
   margin: 3px 3px 7px 3px;
 }
-.user-view .tag-section form input[type=submit] {
+.tag-section form input[type=submit] {
   width: 50px;
 }
-.user-view .tag-section .tag-pool {
+.tag-section .tag-pool {
   margin: 3px 3px 20px 3px;
 }
-.user-view .word-section {
+
+.word-section {
   min-width: 600px;
   max-width: 600px;
 }
-.user-view .word-section .word-box {
+.word-section .word-box {
   border-width: 3px;
   border-radius: 15px;
   border-style: solid;
@@ -289,15 +290,15 @@ header h4:active {
   margin: 3px;
   padding: 3px;
 }
-.user-view .word-section .word-box .word {
+.word-section .word-box .word {
   flex: 1;
 }
-.user-view .word-section .word-box .word.foo {
+.word-section .word-box .word.foo {
   text-align: left;
 }
-.user-view .word-section .word-box .word.bar {
+.word-section .word-box .word.bar {
   text-align: right;
 }
-.user-view .word-section .word-box input[type=text] {
+.word-section .word-box input[type=text] {
   width: 200px;
 }/*# sourceMappingURL=llfsa.css.map */

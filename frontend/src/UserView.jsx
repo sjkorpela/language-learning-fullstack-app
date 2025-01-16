@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Import word list item element
-import Word from "./UserView/Word"
+import Word from "./Word"
 
 export default function UserView({ wordList, tagList }) {
 
@@ -168,24 +168,6 @@ export default function UserView({ wordList, tagList }) {
       <div className="flex wrap justify-center">
 
         <section className="tag-section flex-grow">
-          <h2><big>Tags</big> <small><i>Create and delete tags</i></small></h2>
-          <form>
-            <input type="text" id="title" name="title" placeholder="Add new tag" required></input>
-            <input type="submit" className="button green" value="Add"></input>
-          </form>
-
-          <div className="tag-pool">
-            {
-              tags.map((tag) => {
-                return (
-                  <div key={tag.id} className="tag flex">
-                    {tag.name}
-                    <button className="button red">X</button>
-                  </div>
-                )
-              })
-            }
-          </div>
 
           <h2><big>Filter</big> <small><i>Filter words by tags</i></small></h2>
           <form onSubmit={updateFilters}>

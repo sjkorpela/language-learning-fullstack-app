@@ -63,7 +63,7 @@ export default function App() {
         // Admin view, to manage words
         {
           path: "/admin",
-          element: <AdminView />
+          element: <AdminView wordList={wordList} tagList={tagList} />
         }
       ]
     }

@@ -195,6 +195,10 @@ header {
   font-size: small;
 }
 
+//
+// Multi-use specifics, elements present in both user and admin view
+//
+
 .tag-pool {
   @include rounded;
   border-radius: 15px;
@@ -231,65 +235,66 @@ header {
   }
 }
 
+.tag-section {
+  @include rounded;
+  min-width: 300px;
+  max-width: 600px;
+  height: fit-content;
 
+  h2 {
+    margin: 10px 3px 5px 3px;
+  }
 
+  form {
+    margin: 3px 3px 7px 3px;
+
+    input[type=submit] {
+      width: 50px;
+    }
+  }
+
+  .tag-pool {
+    margin: 3px 3px 20px 3px;
+  }
+}
+
+.word-section {
+  min-width: 600px;
+  max-width: 600px;
+
+  .word-box {
+    @include rounded;
+
+    margin: 3px;
+    padding: 3px;
+
+    .word {
+      // @include debug-border;
+      flex: 1;
+    }
+
+    .word.foo {
+      text-align: left;
+      // border-color: red;
+    }
+
+    .word.bar {
+      text-align: right;
+      // border-color: blue;
+    }
+
+    input[type=text] {
+      width: 200px;
+    }
+  }
+}
 
 //
 // User view specifics
 //
 
-.user-view {
 
-  .tag-section {
-    @include rounded;
-    min-width: 300px;
-    max-width: 600px;
-    height: fit-content;
 
-    h2 {
-      margin: 10px 3px 5px 3px;
-    }
-
-    form {
-      margin: 3px 3px 7px 3px;
-
-      input[type=submit] {
-        width: 50px;
-      }
-    }
-
-    .tag-pool {
-      margin: 3px 3px 20px 3px;
-    }
-  }
-
-  .word-section {
-    min-width: 600px;
-    max-width: 600px;
-    .word-box {
-      @include rounded;
-
-      margin: 3px;
-      padding: 3px;
-
-      .word {
-        // @include debug-border;
-        flex: 1;
-      }
-
-      .word.foo {
-        text-align: left;
-        // border-color: red;
-      }
-
-      .word.bar {
-        text-align: right;
-        // border-color: blue;
-      }
-
-      input[type=text] {
-        width: 200px;
-      }
-    }
-  }
-}
+//
+// Admin view specifics
+//
