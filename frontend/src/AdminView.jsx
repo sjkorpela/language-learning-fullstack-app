@@ -9,7 +9,7 @@ import Word from "./AdminView/Word.jsx"
 import CheckList from "./CheckList.jsx";
 import TagManager from "./AdminView/TagManager.jsx";
 
-export default function AdminView({ wordList, tagList }) {
+export default function AdminView({ wordList, tagList, updateLists }) {
 
   const [words, setWords] = useState([]);
   const [tags, setTags] = useState([]);
@@ -110,7 +110,7 @@ export default function AdminView({ wordList, tagList }) {
                 }
                 return (
                   <div key={word.id}>
-                    <Word word={word} />
+                    <Word word={word} updateLists={updateLists} />
                   </div>
                 )
               })
