@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 
 // Import word list item element
 import Word from "./UserView/Word.jsx"
+import Scoreboard from "./UserView/Scoreboard.jsx";
+import CheckList from "./CheckList.jsx";
 
 export default function UserView({ wordList, tagList }) {
 
@@ -85,12 +87,14 @@ export default function UserView({ wordList, tagList }) {
 
     temp.push({
       id: word.id,
-      score: (correct) ? 1 : 0,
+      points: (correct) ? 1 : 0,
       tags: word.tags
     })
 
     setScores(temp);
   }
+
+
 
   return (
     <div className="full-window user-view flex align-center column">
@@ -108,32 +112,12 @@ export default function UserView({ wordList, tagList }) {
 
           <div className="side-box">
             <h2><big>Score</big> <small><i>Scores filtered by tags</i></small></h2>
-            tag: 100p
+            <Scoreboard scores={scores} tags={tags} />
           </div>
-
-          {/* <div className="side-box">
-            <h2><big>Options</big> <small><i>AAAAAAAAAAAA</i></small></h2>
-          </div> */}
 
           <div className="side-box">
             <h2><big>Filter</big> <small><i>Filter words by tags</i></small></h2>
-            <form onSubmit={updateFilters}>
-              <table className="filter-list">
-                <tbody>
-                  {
-                    tags.map((tag) => {
-                      return (
-                        <tr key={tag.id}>
-                          <td><input type="checkbox" name={tag.name}></input></td>
-                          <td>{tag.name}</td>
-                        </tr>
-                      )
-                    })
-                  }
-                </tbody>
-              </table>
-              <button type="submit" className="button">Apply</button>
-            </form>
+            <CheckList options={tags} callback={updateFilters} />
           </div>
         </section>
 
