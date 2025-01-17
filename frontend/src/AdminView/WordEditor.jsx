@@ -1,7 +1,7 @@
 
 import { useState } from "react"
 
-export default function WordEditor({ tagList, callback }) {
+export default function WordEditor({ tagList, postedWord }) {
 
   const [tags, setTags] = useState([]);
 
@@ -63,6 +63,14 @@ export default function WordEditor({ tagList, callback }) {
           "barWord": event.target.barWord.value,
           "tags": tagString
         })
+      })
+
+      postedWord({
+        "fooLang": event.target.fooLang.value,
+        "fooWord": event.target.fooWord.value,
+        "barLang": event.target.barLang.value,
+        "barWord": event.target.barWord.value,
+        "tags": tags
       })
 
       document.getElementById("word-form").reset();

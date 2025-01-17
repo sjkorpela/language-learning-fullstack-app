@@ -41,6 +41,11 @@ export default function AdminView({}) {
     setWords(words1);
   }
 
+  function addWord(params) {
+    params.id = words[words.length - 1].id + 1
+    setWords([...words, params])
+  }
+
 
   function updateFilters(event) {
     event.preventDefault();
@@ -108,7 +113,7 @@ export default function AdminView({}) {
 
           <div className="side-box">
             <h2><big>Create</big> <small><i>Create new words</i></small></h2>
-            <WordEditor tagList={tags}/>
+            <WordEditor tagList={tags} postedWord={addWord}/>
           </div>
 
 
