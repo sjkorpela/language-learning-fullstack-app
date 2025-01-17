@@ -63,11 +63,13 @@ export default function Word({ word }) {
         <div className="flex">
           <div className="foo word">
             <p><input type="text" name="fooLang" placeholder="Language" defaultValue={word.fooLang}></input></p>
+            <p><br /></p>
             <h3><input type="text" name="fooWord" placeholder="Word" defaultValue={word.fooWord}></input></h3>
           </div>
 
           <div className="bar word">
             <p><input type="text" name="barLang" placeholder="Language" defaultValue={word.barLang}></input></p>
+            <p><br /></p>
             <h3><input type="text" name="barWord" placeholder="Word" defaultValue={word.barWord}></input></h3>
           </div>
         </div>

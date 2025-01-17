@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Word from "./AdminView/Word.jsx"
 import CheckList from "./CheckList.jsx";
 import TagManager from "./AdminView/TagManager.jsx";
+import WordEditor from "./AdminView/WordEditor.jsx";
 
 export default function AdminView({ wordList, tagList, updateLists }) {
 
@@ -97,6 +98,13 @@ export default function AdminView({ wordList, tagList, updateLists }) {
         </section>
 
         <section className="word-section">
+
+          <div className="side-box">
+            <h2><big>Create</big> <small><i>Create new words</i></small></h2>
+            <WordEditor tagList={tags}/>
+          </div>
+
+
           <div className="word-list">
             {
               words.map((word) => {

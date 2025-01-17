@@ -244,6 +244,7 @@ header h4:active {
   border-color: #b7edff;
   border-radius: 15px;
   border-width: 1px;
+  min-height: 25px;
   background-color: #649db1;
   border-color: #649db1;
   display: flex;
@@ -343,13 +344,16 @@ header h4:active {
 .word-section .word-box .word.bar {
   text-align: right;
 }
-.word-section .word-box input[type=text] {
-  width: 200px;
-}
 .word-section .word-box .tag-pool {
   background-color: #b7edff;
   border-color: #b7edff;
 }
+.word-section .word-box input[type=text] {
+  width: 200px;
+}
 .word-section .word-box div.flex {
   margin-bottom: 3px;
+}
+.word-section .word-box .select {
+  border-radius: 15px;
 }/*# sourceMappingURL=llfsa.css.map */

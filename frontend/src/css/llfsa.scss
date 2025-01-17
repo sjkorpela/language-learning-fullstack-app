@@ -220,6 +220,7 @@ header {
   @include rounded;
   border-radius: 15px;
   border-width: 1px;
+  min-height: 25px;
 
   background-color: #649db1;
   border-color: #649db1;
@@ -326,17 +327,21 @@ header {
       // border-color: blue;
     }
 
-    input[type=text] {
-      width: 200px;
-    }
-
     .tag-pool {
       background-color: #b7edff;
       border-color: #b7edff;
     }
 
+    input[type=text] {
+      width: 200px;
+    }
+
     div.flex {
       margin-bottom: 3px;
+    }
+
+    .select {
+      border-radius: 15px;
     }
   }
 }
