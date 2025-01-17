@@ -4,35 +4,42 @@ import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
+import { formatTags } from "./Funcs.jsx";
+
 // Import word list item element
 import Word from "./UserView/Word.jsx"
 import Scoreboard from "./UserView/Scoreboard.jsx";
 import CheckList from "./CheckList.jsx";
 
-export default function UserView({ wordList, tagList }) {
+export default function UserView({}) {
 
   const [words, setWords] = useState([]);
   const [tags, setTags] = useState([]);
   const [filters, setFilters] = useState([]);
   const [scores, setScores] = useState([])
 
+  // useEffect(() => {
+  //   console.log("UserView UEW", words);
+  //   console.log("UserView UET", tags);
+  //   console.log("UserView UEF", filters);
+  //   console.log("UserView UES", scores);
+  // })
+
   useEffect(() => {
-    // console.log("UserView UEW", words);
-    // console.log("UserView UET", tags);
-    // console.log("UserView UEF", filters);
-    // console.log("UserView UES", scores);
+    fetchAll();
+  }, [])
 
-    setLists();
-  })
+  async function fetchAll() {
+    const rawTags = await fetch("/api/tags");
+    const tags1 = await rawTags.json();
+    setTags(tags1);
 
-  async function setLists() {
-    if (tags.length <= 0 && tagList != undefined) {
-      setTags(tagList);
-    }
-
-    if (words.length <= 0 && wordList != undefined) {
-      setWords(wordList);
-    }
+    const rawWords = await fetch("/api/words");
+    const words1 = await rawWords.json();
+    await words1.forEach(async (word) => {
+      word.tags = await formatTags(word.tags, tags);
+    })
+    setWords(words1);
   }
 
   function updateFilters(event) {
@@ -40,7 +47,7 @@ export default function UserView({ wordList, tagList }) {
 
     const filters = [];
 
-    tagList.forEach(tag => {
+    tags.forEach(tag => {
       if (event.target[tag.name].checked) {
         filters.push(tag);
       }

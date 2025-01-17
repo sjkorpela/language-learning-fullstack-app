@@ -4,34 +4,41 @@ import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
+import { formatTags } from "./Funcs.jsx";
+
 // Import word list item element
 import Word from "./AdminView/Word.jsx"
 import CheckList from "./CheckList.jsx";
 import TagManager from "./AdminView/TagManager.jsx";
 import WordEditor from "./AdminView/WordEditor.jsx";
 
-export default function AdminView({ wordList, tagList, updateLists }) {
+export default function AdminView({}) {
 
   const [words, setWords] = useState([]);
   const [tags, setTags] = useState([]);
   const [filters, setFilters] = useState([]);
 
+  // useEffect(() => {
+  //   console.log("AdminView UEW", words);
+  //   console.log("AdminView UET", tags);
+  //   console.log("AdminView UEF", filters);
+  // })
+
   useEffect(() => {
-    // console.log("AdminView UEW", words);
-    // console.log("AdminView UET", tags);
-    // console.log("AdminView UEF", filters);
+    fetchAll();
+  }, [])
 
-    setLists();
-  })
+  async function fetchAll() {
+    const rawTags = await fetch("/api/tags");
+    const tags1 = await rawTags.json();
+    setTags(tags1);
 
-  async function setLists() {
-    if (tags.length <= 0 && tagList != undefined) {
-      setTags(tagList);
-    }
-
-    if (words.length <= 0 && wordList != undefined) {
-      setWords(wordList);
-    }
+    const rawWords = await fetch("/api/words");
+    const words1 = await rawWords.json();
+    await words1.forEach(async (word) => {
+      word.tags = await formatTags(word.tags, tags);
+    })
+    setWords(words1);
   }
 
 
@@ -40,7 +47,7 @@ export default function AdminView({ wordList, tagList, updateLists }) {
 
     const filters = [];
 
-    tagList.forEach(tag => {
+    tags.forEach(tag => {
       if (event.target[tag.name].checked) {
         filters.push(tag);
       }
@@ -115,7 +122,7 @@ export default function AdminView({ wordList, tagList, updateLists }) {
                 }
                 return (
                   <div key={word.id}>
-                    <Word word={word} updateLists={updateLists} />
+                    <Word word={word} />
                   </div>
                 )
               })
