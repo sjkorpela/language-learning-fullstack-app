@@ -4,8 +4,6 @@ import { useState } from "react"
 export default function WordEditor({ tagList, callback }) {
 
   const [tags, setTags] = useState([]);
-  console.log("tt", tags);
-  console.log("tl", tagList);
 
   function addTag(event) {
     event.preventDefault();
