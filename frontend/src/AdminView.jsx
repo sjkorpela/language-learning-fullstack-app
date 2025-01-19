@@ -42,12 +42,12 @@ export default function AdminView({}) {
   }
 
   function addWord(params) {
-    params.id = words[words.length - 1].id + 1
+    params.id = (words.length == 0) ? 1 : words[words.length - 1].id + 1
     setWords([...words, params]);
   }
 
   function addTag(params) {
-    params.id = tags[tags.length - 1].id + 1
+    params.id = (tags.length == 0) ? 1 : tags[tags.length - 1].id + 1
     setTags([...tags, params]);
   }
 
