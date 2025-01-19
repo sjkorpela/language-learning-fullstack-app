@@ -18,11 +18,11 @@ export default function AdminView({}) {
   const [tags, setTags] = useState([]);
   const [filters, setFilters] = useState([]);
 
-  useEffect(() => {
-    console.log("AdminView UEW", words);
-    console.log("AdminView UET", tags);
-    console.log("AdminView UEF", filters);
-  })
+  // useEffect(() => {
+  //   console.log("AdminView UEW", words);
+  //   console.log("AdminView UET", tags);
+  //   console.log("AdminView UEF", filters);
+  // })
 
   useEffect(() => {
     fetchAll();
@@ -170,10 +170,9 @@ export default function AdminView({}) {
                     return;
                   }
                 }
-                console.log(word);
                 return (
                   <div key={word.id}>
-                    <Word word={word} patchedWord={patchWord} deletedWord={deleteWord} />
+                    <Word word={word} tagList={tags} patchedWord={patchWord} deletedWord={deleteWord} />
                   </div>
                 )
               })
