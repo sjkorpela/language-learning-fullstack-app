@@ -31,13 +31,13 @@ export default function UserView({}) {
 
   async function fetchAll() {
     const rawTags = await fetch("/api/tags");
-    const tags1 = await rawTags.json();
-    setTags(tags1);
+    const cookedTags = await rawTags.json();
+    setTags(cookedTags);
 
     const rawWords = await fetch("/api/words");
     const words1 = await rawWords.json();
     await words1.forEach(async (word) => {
-      word.tags = await formatTags(word.tags, tags);
+      word.tags = await formatTags(word.tags, cookedTags);
     })
     setWords(words1);
   }
