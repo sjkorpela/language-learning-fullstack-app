@@ -5,6 +5,21 @@ LLFSA is a web application designed to be used for learning vocabulary in differ
 LLFSA on render.com: https://language-learning-fullstack-app.onrender.com/
 _(It may take bit to load..)_
 
+## Screencast
+
+### Link
+
+As a mandatory part for grading this project, a screencast explaining the app is needed. Here it is linked: [OneDrive](https://tuni-my.sharepoint.com/:v:/g/personal/santeri_korpela_tuni_fi/EckAHbks-HVGl3ADTmfx13UBfqVISQKvFDOdjitNH5jA9A?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=bdhW5D)
+
+### Timestamps
+
+- 00:00 UI and a bug find
+- 06:10 Backend
+- 16:15 Frontend and a bug fix
+- 25:45 Grading
+
+The link will expire in 30 days or so.
+
 ## How to install and run
 
 ### 1. Clone the repo
