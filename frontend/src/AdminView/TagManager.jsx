@@ -1,6 +1,6 @@
 
 
-export default function TagManager({ tags, callback}) {
+export default function TagManager({ tags, addedtag, deletedTag}) {
 
   async function postTag(event) {
     event.preventDefault();
@@ -14,9 +14,7 @@ export default function TagManager({ tags, callback}) {
       })
     })
 
-    // const rawTags = await fetch("/api/tags");
-    // const tags = await rawTags.json();
-    // setTags(tags);
+    addedtag({name: name})
   }
 
   async function deleteTag(id) {
@@ -25,9 +23,7 @@ export default function TagManager({ tags, callback}) {
       method: "DELETE"
     })
 
-    // const rawTags = await fetch("/api/tags");
-    // const tags = await rawTags.json();
-    // setTags(tags);
+    deletedTag(id);
   }
 
   return (

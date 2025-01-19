@@ -18,11 +18,11 @@ export default function AdminView({}) {
   const [tags, setTags] = useState([]);
   const [filters, setFilters] = useState([]);
 
-  // useEffect(() => {
-  //   console.log("AdminView UEW", words);
-  //   console.log("AdminView UET", tags);
-  //   console.log("AdminView UEF", filters);
-  // })
+  useEffect(() => {
+    console.log("AdminView UEW", words);
+    console.log("AdminView UET", tags);
+    console.log("AdminView UEF", filters);
+  })
 
   useEffect(() => {
     fetchAll();
@@ -43,15 +43,51 @@ export default function AdminView({}) {
 
   function addWord(params) {
     params.id = words[words.length - 1].id + 1
-    setWords([...words, params])
+    setWords([...words, params]);
+  }
+
+  function addTag(params) {
+    params.id = tags[tags.length - 1].id + 1
+    setTags([...tags, params]);
   }
 
   function patchWord(params) {
-
+    setWords(words.map((word) => {
+      if (word.id == params.id) {
+        params.fooLang = (params.fooLang == undefined) ? word.fooLang : params.fooLang;
+        params.fooWord = (params.fooWord == undefined) ? word.fooWord : params.fooWord;
+        params.barLang = (params.barLang == undefined) ? word.barLang : params.barLang;
+        params.barWord = (params.barWord == undefined) ? word.barWord : params.barWord;
+        params.tags = (params.tags == undefined) ? word.tags : params.tags;
+        return params;
+      } else {
+        return word;
+      }
+    }))
   }
 
-  function deleteWord(params) {
+  function deleteWord(id) {
+    const newWords = [];
 
+    for (let word of words) {
+      if (word.id != id) {
+        newWords.push(word);
+      }
+    }
+
+    setWords(newWords);
+  }
+
+  function deleteTag(id) {
+    const newTags = [];
+
+    for (let tag of tags) {
+      if (tag.id != id) {
+        newTags.push(tag);
+      }
+    }
+
+    setTags(newTags);
   }
 
 
@@ -109,7 +145,7 @@ export default function AdminView({}) {
 
           <div className="side-box">
             <h2><big>Tags</big> <small><i>Create and delete tags</i></small></h2>
-            <TagManager tags={tags} />
+            <TagManager tags={tags} addedtag={addTag} deletedTag={deleteTag}/>
           </div>
 
           <div className="side-box">
@@ -134,9 +170,10 @@ export default function AdminView({}) {
                     return;
                   }
                 }
+                console.log(word);
                 return (
                   <div key={word.id}>
-                    <Word word={word} />
+                    <Word word={word} patchedWord={patchWord} deletedWord={deleteWord} />
                   </div>
                 )
               })

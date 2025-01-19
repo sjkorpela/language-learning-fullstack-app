@@ -1,7 +1,7 @@
 
 import { useState } from "react"
 
-export default function Word({ word }) {
+export default function Word({ word, patchedWord, deletedWord }) {
 
   const [editMode, setEditMode] = useState(false);
 
@@ -11,9 +11,33 @@ export default function Word({ word }) {
       method: "DELETE"
     })
 
-    // const rawTags = await fetch("/api/tags");
-    // const tags = await rawTags.json();
-    // setTags(tags);
+    deletedWord(id);
+  }
+
+  async function applyChanges(event) {
+    event.preventDefault();
+
+    const name = event.target.name.value;
+
+    const response = await fetch(`api/words/${word.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        "fooLang": event.target.fooLang.value,
+        "fooWord": event.target.fooWord.value,
+        "barLang": event.target.barLang.value,
+        "barWord": event.target.barWord.value
+      })
+    })
+
+    setEditMode(false);
+    patchedWord({
+      fooLang: event.target.fooLang.value,
+      fooWord: event.target.fooWord.value,
+      barLang: event.target.barLang.value,
+      barWord: event.target.barWord.value,
+      id: word.id
+    })
   }
 
   function renderTags() {
@@ -36,25 +60,6 @@ export default function Word({ word }) {
         </div>
       )
     }
-  }
-
-  async function applyChanges(event) {
-    event.preventDefault();
-
-    const name = event.target.name.value;
-
-    const response = await fetch(`api/words/${word.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        "fooLang": event.target.fooLang.value,
-        "fooWord": event.target.fooWord.value,
-        "barLang": event.target.barLang.value,
-        "barWord": event.target.barWord.value
-      })
-    })
-
-    setEditMode(false)
   }
 
   if (editMode) {
