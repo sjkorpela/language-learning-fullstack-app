@@ -19,7 +19,7 @@ export default function Scoreboard({ scores = [], tags = [] }) {
     tag.score = 0;
     for (let score of scores) {
       for (let stag of score.tags) {
-        if (tag.id == stag.id) { tag.score++ };
+        if (tag.id == stag.id) { tag.score += score.points };
       }
     }
   }

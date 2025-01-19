@@ -6,10 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Import react router dependencies to render subpages, and to default to learn view
 import { Outlet, Navigate } from "react-router-dom";
 
-import { useState, useEffect } from "react";
-
-import { formatTags } from "./Funcs.jsx";
-
 // Import admin, and user view for subpages
 import AdminView from "./AdminView";
 import UserView from "./UserView";
@@ -22,9 +18,6 @@ import UserView from "./UserView";
  * @returns RouterProvider element, which contains outlet for subpages to render in
  */
 export default function App() {
-
-  const [wordList, setWordList] = useState([]);
-  const [tagList, setTagList] = useState([]);
 
   // Create router structure
   const router = createBrowserRouter([
