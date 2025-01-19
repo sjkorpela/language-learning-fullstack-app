@@ -88,6 +88,18 @@ export default function AdminView({}) {
     }
 
     setTags(newTags);
+
+    for (let word of words) {
+      const temp = [];
+
+      for (let tag of word.tags) {
+        if (tag.id != id) {
+          temp.push(tag);
+        }
+      }
+
+      word.tags = temp;
+    }
   }
 
 
